@@ -4,7 +4,7 @@
 #
 #  id               :integer          not null, primary key
 #  address          :text
-#  type             :text
+#  description      :text
 #  image            :text
 #  apartment_number :text
 #  street_number    :text
@@ -21,4 +21,6 @@
 #
 
 class Home < ActiveRecord::Base
+	has_many :rooms
+	has_many :users, :through => :rooms
 end

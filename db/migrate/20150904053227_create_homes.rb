@@ -2,7 +2,7 @@ class CreateHomes < ActiveRecord::Migration
   def change
     create_table :homes do |t|
     	t.text :address
-    	t.text :type
+    	t.text :description
     	t.text :image
     	t.text :apartment_number
     	t.text :street_number

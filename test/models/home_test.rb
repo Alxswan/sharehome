@@ -4,7 +4,7 @@
 #
 #  id               :integer          not null, primary key
 #  address          :text
-#  type             :text
+#  description      :text
 #  image            :text
 #  apartment_number :text
 #  street_number    :text

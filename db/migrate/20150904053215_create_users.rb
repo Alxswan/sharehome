@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
     	t.date :birthday
     	t.date :moved_in
     	t.integer :room_id
-    	i.integer :location_id
+    	t.integer :location_id
     	t.boolean :is_house_admin
     	t.boolean :is_admin
       t.timestamps null: false

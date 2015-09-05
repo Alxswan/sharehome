@@ -46,7 +46,7 @@ end
 private 
 
   def home_params
-  	params.require(:home).permit(:address, :description, :is_house_admin, :password, :password_confirmation)   	
+  	params.require(:home).permit(:address, :description, :is_house_admin, :password, :password_confirmation, :name)   	
   end
 
   def check_if_logged_in

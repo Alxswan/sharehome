@@ -29,5 +29,6 @@ class Home < ActiveRecord::Base
 	has_many :users, :through => :rooms
 
 	validates :address, :presence => true
+	validates :name, :presence => true, :uniqueness => true
 	validates :description, :presence => true
 end

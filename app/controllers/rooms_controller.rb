@@ -17,10 +17,10 @@ class RoomsController < ApplicationController
 	  	room = home.rooms.create
     end
 
-      user_room = home.room.first
+      user_room = home.rooms.first
 	  	user_room.users << @current_user
       user_room.occupant = @current_user.first_name
-      room.save
+      user_room.save
 	  	
   	
 

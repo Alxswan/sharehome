@@ -31,7 +31,9 @@ class RoomsController < ApplicationController
   end
 
   def update 
-
+    @room = Room.find params[:id]
+    @room.users << @current_user
+    redirect_to root_path
   end
 
   private

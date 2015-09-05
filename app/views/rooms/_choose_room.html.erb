@@ -2,7 +2,9 @@
 
 <% n = 1 %>
 <% @rooms.each do |room| %>
-	<%= link_to "Room #{n} #{room.occupant}", room %>
+
+	<%= button_to "Room #{n} #{room.occupant}", room, :method => 'patch' %>
+
 	<% n += 1 %>
 
 <% end %>

@@ -1,8 +1,12 @@
 <h3>Choose Your Room!</h3>
 
-<% n = 1 %>
-<% @rooms.each do |room| %>
-	<%= link_to "Room #{n} #{room.occupant}", room %>
-	<% n += 1 %>
+<% if @current_user.room_id %>
+
+<p>This is fun</p>
+
+<% else %>
+
+<%= render :partial => "choose_room" %>
 
 <% end %>
+

@@ -1,8 +1,7 @@
 class CreateRooms < ActiveRecord::Migration
   def change
     create_table :rooms do |t|
-    	t.text :type
-    	t.text :occupant
+      t.text :occupant
     	t.text :description
     	t.text :image
     	t.integer :rent

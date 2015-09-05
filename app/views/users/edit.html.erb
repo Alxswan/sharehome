@@ -1,2 +1,40 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>Edit account details</h1>
+
+<% if @user.errors.any? %>
+ <ol>
+   <% @user.errors.full_messages.each do |msg| %>
+   <li>
+     <%= msg %>
+   </li>
+   <% end %>
+ </ol>
+ <% end %>
+
+
+<%= form_for @user do |f| %>
+
+  <p>
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+  </p>
+
+  <p>
+    <%= f.label :first_name %> 
+    <%=  f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :password %> 
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation  %> 
+    <%= f.password_field :password_confirmation %>
+  </p>
+ 
+ <%=  f.submit  %>
+  
+<% end %>
+
+  <%= button_to "Delete User #{@current_user.first_name}", @current_user, :method => 'delete', :data => { :confirm => 'Are you sure you want to delete your account?' } %>
+

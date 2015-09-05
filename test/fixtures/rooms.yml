@@ -3,7 +3,6 @@
 # Table name: rooms
 #
 #  id          :integer          not null, primary key
-#  type        :text
 #  occupant    :text
 #  description :text
 #  image       :text

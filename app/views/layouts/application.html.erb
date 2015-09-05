@@ -8,6 +8,18 @@
 </head>
 <body>
 
+<nav>
+	<%= link_to 'Home', '/' %>
+	<% if @current_user.present? %>
+	<%= link_to "Edit profile", edit_user_path %>
+	<%= "Welcome back #{ @current_user.first_name }!"%>
+	<%= link_to "Log out #{@current_user.first_name}", login_path, :method => 'delete', :data => { :confirm => 'Are you sure you wish to logout?' } %>
+	<% else %>
+	<%= link_to 'Create Account', new_user_path %>
+	<%= link_to 'Log in', login_path %>
+	<% end %>	
+</nav>
+
 <%= yield %>
 
 </body>

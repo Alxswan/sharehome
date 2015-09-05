@@ -1,9 +1,9 @@
 User.destroy_all
-u1 = User.create :first_name => 'Alex', :email => 'alexandraswan@gmail.com', :is_house_admin => true, :is_admin => true
-u2 = User.create :first_name => 'Jamie', :email => 'jamie@test.com', :is_house_admin => true
-u3 = User.create :first_name => 'Eve', :email => 'eve@test.com'
-u4 = User.create :first_name => 'Alice', :email => 'alice@test.com'
-u5 = User.create :first_name => 'James', :email => 'james@test.com'
+u1 = User.create :first_name => 'Alex', :email => 'alexandraswan@gmail.com', :is_house_admin => true, :is_admin => true, :password => 'chicken'
+u2 = User.create :first_name => 'Jamie', :email => 'jamie@test.com', :is_house_admin => true, :password => 'chicken'
+u3 = User.create :first_name => 'Eve', :email => 'eve@test.com', :password => 'chicken'
+u4 = User.create :first_name => 'Alice', :email => 'alice@test.com', :password => 'chicken'
+u5 = User.create :first_name => 'James', :email => 'james@test.com', :password => 'chicken'
 
 Room.destroy_all
 r1 = Room.create :description => 'Front Room', :occupant => 'Jamie', :rent => 160

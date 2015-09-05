@@ -1,2 +1,17 @@
-<h1>Rooms#new</h1>
-<p>Find me in app/views/rooms/new.html.erb</p>
+<h1>Add Rooms</h1>
+
+<% if !@number %>
+
+<%= form_tag '/rooms' do %>
+	  <%= label_tag :number, 'Number of Rooms' %>
+	  <%= number_field_tag :number %>
+	  <%= hidden_field_tag :home_id, params[:home_id] %>
+	  <%= submit_tag 'Add rooms' %> 
+	<% end %>
+
+	<% else %>
+
+<%= link_to 'Change Number of Rooms', new_room_path %>
+
+<% end %>
+

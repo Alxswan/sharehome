@@ -1,2 +1,38 @@
-<h1>Homes#new</h1>
-<p>Find me in app/views/homes/new.html.erb</p>
+<h1>Create Home</h1>
+
+<% if @home.errors.any? %>
+ <ol>
+   <% @home.errors.full_messages.each do |msg| %>
+   <li>
+     <%= msg %>
+   </li>
+   <% end %>
+ </ol>
+ <% end %>
+
+<%= form_for @home do |f| %>
+
+  <p>
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </p>
+
+  <p>
+    <%= f.label :description, 'Type' %> 
+    <%=  f.text_field :description, :placeholder => 'House, Appartment' %>
+  </p>
+  <p>
+    <%= f.label :password %> 
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation  %> 
+    <%= f.password_field :password_confirmation %>
+  </p>
+
+  <%=  f.submit  %>
+
+<% end %>
+
+	

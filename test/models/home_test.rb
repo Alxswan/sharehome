@@ -3,6 +3,7 @@
 # Table name: homes
 #
 #  id               :integer          not null, primary key
+#  name             :text
 #  address          :text
 #  description      :text
 #  image            :text

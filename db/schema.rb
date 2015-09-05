@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20150905002932) do
   enable_extension "plpgsql"
 
   create_table "homes", force: :cascade do |t|
+    t.text     "name"
     t.text     "address"
     t.text     "description"
     t.text     "image"

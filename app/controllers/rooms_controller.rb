@@ -15,15 +15,16 @@ class RoomsController < ApplicationController
 
   	number.times do
 	  	room = home.rooms.create
+    end
 
-	  	unless @current_user.room_id
-	  		room.users << @current_user
-        room.occupant = @current_user.first_name
-        room.save
-	  	end
-  	end
+      user_room = home.room.first
+	  	user_room.users << @current_user
+      user_room.occupant = @current_user.first_name
+      room.save
+	  	
+  	
 
-  	redirect_to root_path
+  	redirect_to root_path 
 
   end
 
@@ -33,6 +34,7 @@ class RoomsController < ApplicationController
   def update 
     @room = Room.find params[:id]
     @room.users << @current_user
+    @room.update(:occupant => "#{@current_user.first_name}")
     redirect_to root_path
   end
 

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   	@user = User.new user_params
   	if @user.save
       session[:user_id] = @user.id
-  	  redirect_to :controller =>'pages', :action => 'new_user'
+  	  redirect_to :controller =>'pages', :action => 'new_user', :id => :id
 
   	else
   	  render :new
@@ -47,6 +47,7 @@ class UsersController < ApplicationController
   private 
 
   def user_params
+    params[:user][:first_name].capitalize!
   	params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)   	
   end
 

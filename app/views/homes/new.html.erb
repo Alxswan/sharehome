@@ -13,6 +13,11 @@
 <%= form_for @home do |f| %>
 
   <p>
+    f.label :house_name
+    f.text_field :house_name
+  </p>
+
+  <p>
     <%= f.label :address %>
     <%= f.text_field :address %>
   </p>

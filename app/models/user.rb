@@ -25,6 +25,6 @@ class User < ActiveRecord::Base
 	has_one :home, :through => :rooms
 
 
-	validates :email, :presence => true, :uniqueness => true
+	validates :email, :presence => true, :uniqueness => true, :on => :create
 	validates :first_name, :presence => true
 end

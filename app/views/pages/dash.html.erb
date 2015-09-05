@@ -1,0 +1,7 @@
+<h2>Welcome to your Home dashboard</h2>
+
+<% if @home %>
+<% if @home.rooms.count < 2 %>
+<%= render :partial => 'invite' %>
+<% end %>
+<%end %>

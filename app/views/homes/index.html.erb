@@ -1,2 +1,9 @@
-<h1>Homes#index</h1>
-<p>Find me in app/views/homes/index.html.erb</p>
+<h2>Join a Home</h2>
+
+<ul>
+	<% @homes.each do |home| %>
+		<li> <%= link_to "#{home.address}", home %> </li>
+
+	<% end %>
+</ul>
+

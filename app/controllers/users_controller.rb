@@ -15,7 +15,8 @@ class UsersController < ApplicationController
   	@user = User.new user_params
   	if @user.save
       session[:user_id] = @user.id
-  	  redirect_to :controller =>'homes', :action => 'new'
+  	  redirect_to :controller =>'pages', :action => 'new_user'
+
   	else
   	  render :new
   	end
@@ -27,11 +28,14 @@ class UsersController < ApplicationController
 
   def update
   	@user = @current_user
+
   	if @user.update user_params
   		redirect_to root_path
+
   	else
   		render :edit
   	end
+  
   end
 
   def destroy
@@ -46,6 +50,10 @@ class UsersController < ApplicationController
   	params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)   	
   end
 
+  def user_params_authenticate_home
+    params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation, :room_id)    
+  end  
+
   def check_if_logged_in
   	redirect_to root_path unless @current_user.present?
   end
@@ -53,5 +61,6 @@ class UsersController < ApplicationController
   def check_if_admin
   	redirect_to root_path unless @current_user.present? && @current_user.is_admin?
   end
+
 
 end

@@ -1,0 +1,5 @@
+<% unless @home.users.include? @current_user %>
+	<%= render :partial => "authenticate_home" %>
+<% end %>
+
+

@@ -5,7 +5,8 @@
 <%= form_tag '/rooms' do %>
 	  <%= label_tag :number, 'Number of Rooms' %>
 	  <%= number_field_tag :number %>
-	  <%= hidden_field_tag :home_id, params[:home_id] %>
+	  <%= hidden_field_tag :home_id, params[:home_id] %> 
+	  <%= hidden_field_tag :occupant, @current_user.first_name %>
 	  <%= submit_tag 'Add rooms' %> 
 	<% end %>
 

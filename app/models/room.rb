@@ -13,6 +13,7 @@
 #
 
 class Room < ActiveRecord::Base
-	has_many :users
 	belongs_to :home
+	has_many :users
+	
 end

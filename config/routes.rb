@@ -31,7 +31,8 @@
 
 Rails.application.routes.draw do
   root :to => 'pages#home'
-  get '/pages/new' => 'pages#new_user'
+  get '/new' => 'pages#new_user'
+  get '/pages/join' => 'pages#join'
   get '/users/edit' => 'users#edit', :as => :edit_user
   resources :users, :except => [:edit]
   resources :homes

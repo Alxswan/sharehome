@@ -12,8 +12,8 @@ r3 = Room.create :description => 'Upstairs Left', :occupant => 'Alex', :rent => 
 r4 = Room.create :description => 'Upstairs Right', :occupant => 'Eve', :rent => 180
 
 Home.destroy_all
-h1 = Home.create :address => '191 Australia Street', :description => 'House'
-h2 = Home.create :address => '217 Cullens Rd', :description => 'House'
+h1 = Home.create :address => '191 Australia Street', :description => 'House', :password => 'chicken'
+h2 = Home.create :address => '217 Cullens Rd', :description => 'House', :password => 'chicken'
 
 h1.rooms << r1 << r2 << r3 << r4
 

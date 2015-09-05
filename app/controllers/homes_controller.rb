@@ -1,8 +1,8 @@
 class HomesController < ApplicationController
 
   before_action :check_if_logged_in, :only => [:index, :edit, :update]
-  before_action :check_if_admin, :only => [:index]
-  before_action :check_if_house_admin, :only => [:edit, :update]
+  # before_action :check_if_admin, :only => [:index]
+  before_action :check_if_house_admin, :only => [:edit]
 
   def new
   	@home = Home.new
@@ -19,15 +19,26 @@ class HomesController < ApplicationController
   end
 
   def show
-
+    @home = Home.find params[:id]
+    @rooms = @home.rooms
   end
 
   def edit
   
   end
 
+  def update
+    home = Home.find params[:id]
+    if home.authenticate(params[:home][:password])
+    
+    redirect_to :controller => 'rooms', :action => 'index', :id => params[:id]
+    else
+  redirect_to homes_path
+  end
+end
+
   def index
-  
+     @homes = Home.all
   end
   
 
@@ -47,7 +58,7 @@ private
   end
 
   def check_if_house_admin
-  	redirect_to_root_path unless @current_user.present? && @current_user.is_house_admin?
+  	redirect_to root_path unless @current_user.present? && @current_user.is_house_admin?
   end
 
 end

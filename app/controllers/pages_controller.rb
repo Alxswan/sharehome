@@ -1,13 +1,19 @@
 class PagesController < ApplicationController
+  
   def home
 
-  	room_id = @current_user.room_id
-  	home_id = Room.find(room_id)
-  	home = Home.find(home_id)
+    if @current_user
+  
+      if @current_user.room_id
 
-  	if home.users == 1
-  		render :invite
-  	end
+  	room_id = @current_user.room_id 
+  	room = Room.find(room_id)
+    home_id = room.home_id
+  	@home = Home.find(home_id)
+  end
+
+  	render:dash
+  end
 
   end
 

@@ -1,5 +1,31 @@
-<% unless @home.users.include? @current_user %>
-	<%= render :partial => "authenticate_home" %>
+<h2>Your Home</h2>
+
+<ul>
+  <li>Name: <%= @home.name %></li>
+  <li>Address: <%= @home.address %></li>
+</ul>
+
+<p>Housemates:
+<ul>
+<% @home.rooms.each do |room| %>
+	<%room.users.each do |user| %>
+		<li> <%= link_to "#{user.first_name}", "/rooms/#{user.room_id}" %> </li>
+	<% end %>
+	<% end %>
+</ul>
+	</p>
+
+<%if @current_user.is_house_admin? %>
+
+<div class="controls">
+	<%= link_to 'Edit', edit_home_path(@home) %>
+	<%= button_to 'Delete', @home, :method => 'delete', :data => {:confirm => "Are you sure?"} %>
+</div>
+
 <% end %>
+
+
+
+
 
 

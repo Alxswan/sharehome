@@ -6,9 +6,10 @@ class PagesController < ApplicationController
   
       if @current_user.room_id
         home_id = @current_user.room.home_id
-      	@home = Home.find(home_id)
+      	@home = Home.find_by_id(home_id)
       end
-  	render :dash
+
+  	 render :dash
     
     end
 

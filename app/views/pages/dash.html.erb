@@ -1,7 +1,16 @@
-<h2>Welcome to your dashboard</h2>
+<h2>Welcome Home!</h2>
 
 <% if @home %>
 <% if @home.users.count < 2 %>
 <%= render :partial => 'invite' %>
 <% end %>
+
+
+<%= link_to 'Display House Details', @home %>
+
+<% else %>
+<p>Looks like you don't have a Home yet!</p>
+<%= link_to 'Connect Home', '/new' %>
+
+
 <%end %>

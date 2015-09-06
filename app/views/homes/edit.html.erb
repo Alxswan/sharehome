@@ -1,3 +1,13 @@
-<h1>Homes#edit</h1>
+<% if @home.users.include? @current_user %>
 
-<p>Find me in app/views/homes/edit.html.erb</p>
+<h1>Edit Home</h1>
+<%= render :partial => 'form' %>
+
+  <% else %>
+
+ <%= render :partial => "authenticate_home" %>
+
+
+<% end %>
+
+

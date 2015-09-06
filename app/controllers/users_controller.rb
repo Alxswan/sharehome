@@ -2,9 +2,14 @@ class UsersController < ApplicationController
   
   before_action :check_if_logged_in, :only => [:index, :edit, :update]
   before_action :check_if_admin, :only => [:index]
+  before_action :check_if_current_user, :only => [:show]
 
   def index
   	@users = User.all
+  end
+
+  def show
+    @room = Room.find params[:id]
   end
 
   def new
@@ -47,8 +52,8 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-    params[:user][:first_name].capitalize!
-  	params.require(:user).permit(:email, :first_name, :last_name, :password, :password_confirmation)   	
+    params[:user][:first_name].capitalize! if params[:user]
+  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :password, :password_confirmation)   	
   end
 
   def user_params_authenticate_home
@@ -61,6 +66,10 @@ class UsersController < ApplicationController
 
   def check_if_admin
   	redirect_to root_path unless @current_user.present? && @current_user.is_admin?
+  end
+
+  def check_if_current_user
+    redirect_to root_path unless @current_user.id == params[:id].to_i
   end
 
 

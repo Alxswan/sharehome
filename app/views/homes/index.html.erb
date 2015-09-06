@@ -2,7 +2,13 @@
 
 <ul>
 	<% @homes.each do |home| %>
-		<li> <%= link_to "#{home.address}", home %> </li>
+		<li> <%= link_to "#{home.name}", edit_home_path(home) %>
+		<% if @current_user.room %>
+			<% if @current_user.room.home == home %>
+				(Home) <%= link_to 'Move Out', @current_user.room %>
+			<% end %>
+		<% end %>
+		 </li>
 
 	<% end %>
 </ul>

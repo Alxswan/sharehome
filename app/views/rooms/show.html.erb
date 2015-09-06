@@ -1,0 +1,9 @@
+<h2> <%= @room.occupant %>'s Room </h2>
+
+<p>Rent: <%= @room.rent %></p>
+<p>Description: <%= @room.description %></p>
+
+<div class="controls">
+	<%= link_to 'Edit', edit_room_path(@room) %>
+	<%= button_to 'Delete', @room, :method => 'delete', :data => {:confirm => "Are you sure?"} %>
+</div>

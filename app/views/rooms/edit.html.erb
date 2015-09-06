@@ -1,24 +1,22 @@
-<h1>Rooms#edit</h1>
-<p>Find me in app/views/rooms/edit.html.erb</p>
+<h2>Edit room</h2>
 
-<% (1..@number).each do |number| %> 
-
-<h4>Room <%= number %></h4>
-
-<%= form_for instance_variable_get("room#{number}") do |f| %>
+<%= form_for @room do |f| %>
 
   <p>
-    <%= f.label :occupant %>
+    <%= f.label :occupant, "Occupant(s)" %>
     <%= f.text_field :occupant %>
+  </p> 
+
+  <p>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
   </p>
 
   <p>
-    <%= f.label :description %> 
-    <%=  f.text_field :description, :placeholder => "Big Room" %>
+    <%= f.label :rent %>
+    <%= f.number_field :rent %>
   </p>
- 
-  <%=  f.submit  %>
 
-<% end %>
+  <%=  f.submit  %>
 
 <% end %>

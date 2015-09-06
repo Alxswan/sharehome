@@ -1,4 +1,4 @@
-<h1>Edit account details</h1>
+<h1>Edit your details</h1>
 
 <% if @user.errors.any? %>
  <ol>
@@ -13,6 +13,11 @@
 
 <%= form_for @user do |f| %>
 
+ <p>
+    <%= f.label :moved_in, 'Move in date' %>
+    <%= f.date_field :moved_in %>
+  </p>
+
   <p>
     <%= f.label :email %>
     <%= f.email_field :email %>
@@ -22,6 +27,18 @@
     <%= f.label :first_name %> 
     <%=  f.text_field :first_name %>
   </p>
+
+  <p>
+    <%= f.label :last_name %> 
+    <%=  f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :phone %> 
+    <%=  f.text_field :phone %>
+  </p>
+
+
   <p>
     <%= f.label :password %> 
     <%= f.password_field :password %>

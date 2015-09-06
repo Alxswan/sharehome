@@ -1,44 +1,4 @@
 <h1>Create Home</h1>
-
-<% if @home.errors.any? %>
- <ol>
-   <% @home.errors.full_messages.each do |msg| %>
-   <li>
-     <%= msg %>
-   </li>
-   <% end %>
- </ol>
- <% end %>
-
-<%= form_for @home do |f| %>
-
-  <p>
-    <%= f.label :name, 'House name' %>
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
-    <%= f.label :address %>
-    <%= f.text_field :address %>
-  </p>
-
-  <p>
-    <%= f.label :description, 'Type' %> 
-    <%=  f.select(:description, [['House', 1], ['Appartment',2]]) %>
-  </p>
-  <p>
-    <%= f.label :password %> 
-    <%= f.password_field :password %>
-    Choose a password that you are happy to share with your housemates, they'll use this to join your House dash.
-  </p>
-
-  <p>
-    <%= f.label :password_confirmation  %> 
-    <%= f.password_field :password_confirmation %>
-  </p>
-
-  <%=  f.submit  %>
-
-<% end %>
+<%= render :partial => 'form' %>
 
 	

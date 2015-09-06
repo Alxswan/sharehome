@@ -42,8 +42,9 @@ ActiveRecord::Schema.define(version: 20150905002932) do
     t.text     "image"
     t.integer  "rent"
     t.integer  "home_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.date     "user_movedin"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "users", force: :cascade do |t|

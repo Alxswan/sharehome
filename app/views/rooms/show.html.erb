@@ -1,9 +1,10 @@
 <h2> <%= @room.occupant %>'s Room </h2>
 
-<p>Rent: <%= @room.rent %></p>
+<p>Rent: <%= number_to_currency @room.rent %></p>
 <p>Description: <%= @room.description %></p>
+<p><%= @room.occupant %>'s move in date: <%= @room.user_movedin.strftime "%A, %e %B %Y" if @room.user_movedin %></p>
 
 <div class="controls">
 	<%= link_to 'Edit', edit_room_path(@room) %>
-	<%= button_to 'Delete', @room, :method => 'delete', :data => {:confirm => "Are you sure?"} %>
+	<%= link_to 'Move housemate out', @room, :method => 'delete', :data => {:confirm => "Are you sure?"} %>
 </div>

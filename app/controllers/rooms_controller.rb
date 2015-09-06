@@ -30,10 +30,7 @@ class RoomsController < ApplicationController
       user_room.occupant = @current_user.first_name
       user_room.save
 	  	
-  	
-
   	redirect_to root_path 
-
   end
 
   def edit
@@ -42,15 +39,30 @@ class RoomsController < ApplicationController
 
   def update 
     @room = Room.find params[:id]
+    @room.update room_params
+
+    unless @room.users
     @room.users << @current_user
     @room.update(:occupant => "#{@current_user.first_name}")
+    end
+    redirect_to @room
+  end
+
+  def destroy
+    @room = Room.find params[:id] 
+    home = @room.home
+    room = home.rooms.create(:description => "#{@room.description}", :rent => "#{@room.rent}")
+    occupant = @room.occupant
+    @room.destroy
+    flash[:message] = "Moved #{occupant} out of room"
     redirect_to root_path
+
   end
 
   private
 
   def room_params
-  	params.require(:room).permit(:occupant, :description, :home_id)   	
+  	params.require(:room).permit(:occupant, :description, :home_id, :user_movedin, :rent)   	
   end
 
    def check_if_belongs_to_home

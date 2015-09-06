@@ -2,14 +2,9 @@ class UsersController < ApplicationController
   
   before_action :check_if_logged_in, :only => [:index, :edit, :update]
   before_action :check_if_admin, :only => [:index]
-  before_action :check_if_current_user, :only => [:show]
 
   def index
   	@users = User.all
-  end
-
-  def show
-    @room = Room.find params[:id]
   end
 
   def new
@@ -53,7 +48,7 @@ class UsersController < ApplicationController
 
   def user_params
     params[:user][:first_name].capitalize! if params[:user]
-  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :password, :password_confirmation)   	
+  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :moved_in, :password, :password_confirmation)   	
   end
 
   def user_params_authenticate_home

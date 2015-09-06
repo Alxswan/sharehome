@@ -6,6 +6,7 @@ class CreateRooms < ActiveRecord::Migration
     	t.text :image
     	t.integer :rent
     	t.integer :home_id
+      t.date :user_movedin
 
       t.timestamps null: false
     end

@@ -8,24 +8,48 @@
 </head>
 <body>
 
-<nav>
-	<%= link_to 'Home', '/' %>
-	<% if @current_user.present? %>
-	<%= link_to "Edit profile", edit_user_path %>
-	<%= "Logged in as #{ @current_user.first_name }"%>
-	<%= link_to "Log out #{@current_user.first_name}", login_path, :method => 'delete'%>
-	<% else %>
-	<%= link_to 'Create Account', new_user_path %>
-	<%= link_to 'Log in', login_path %>
-	<% end %>	
-</nav>
+	<header class="navbar navbar-fixed-top navbar-inverse">
+		<div class="container">
+			<nav>
+			<ul class="nav navbar-nav navbar-right">
+				<li><%= link_to 'Home', '/' %></li>
+				<% if @current_user.present? %>
+				<li><%= link_to "Edit profile", edit_user_path %></li>
+				<li><%= "Logged in as #{ @current_user.first_name }"%></li>
+				<li><%= link_to "Log out #{@current_user.first_name}", login_path, :method => 'delete'%></li>
+				<% else %>
+				<li><%= link_to 'Create Account', new_user_path %></li>
+				<li><%= link_to 'Log in', login_path %></li>
+				<% end %>
+			</ul>
+			</nav>
+		</div>
+	</header>
 
-<%= yield %>
-
-<% if flash[:message].present? %>
-  <p><%= flash[:message] %></p>
-<% end %>
+<div class="container">
+	  <%= yield %>
+	  <%= link_to "Sign up now!", '#', class: "btn btn-lg btn-primary" %>
 
 
+
+	<% if flash[:message].present? %>
+	  <p><%= flash[:message] %></p>
+	<% end %>
+
+</div>
+
+<footer class="footer">
+  <small>
+    <a href="/">Sharehome</a>
+    by <a href="/">Alex Swan</a>
+  </small>
+  <nav>
+    <ul>
+      <li><%= link_to "About",   '#' %></li>
+      <li><%= link_to "Contact", '#' %></li>
+      <li><a href="/">News</a></li>
+    </ul>
+  </nav>
+</footer>
 </body>
 </html>

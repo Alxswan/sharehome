@@ -10,9 +10,7 @@
  </ol>
  <% end %>
 
-
 <%= form_for @user do |f| %>
-
 
   <p>
     <%= f.label :email %>
@@ -34,7 +32,6 @@
     <%=  f.text_field :phone %>
   </p>
 
-
   <p>
     <%= f.label :password %> 
     <%= f.password_field :password %>
@@ -49,5 +46,5 @@
   
 <% end %>
 
-  <%= button_to "Delete User #{@current_user.first_name}", @current_user, :method => 'delete', :data => { :confirm => 'Are you sure you want to delete your account?' } %>
+  <%= button_to "Delete Your Account", @current_user, :method => 'delete', :data => { :confirm => 'Are you sure you want to delete your account?' } %>
 

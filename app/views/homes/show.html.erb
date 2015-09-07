@@ -1,27 +1,21 @@
 
+<h2 class="text-center">Your Home</h2>
 
-<h2>Your Home</h2>
+<div class="text-center">
+  <p>Name: <%= @home.name %></p>
+  <p>Address: <%= @home.address %></p>
+</div>
+	<div class="row">
+	<%= link_to 'Edit Home', edit_home_path(@home), :type => "button", :class => "btn btn-primary btn-xs control col-md-3" %>
+	<%= button_to 'Delete Home', @home, :method => 'delete', :data => {:confirm => "Are you sure?"}, :type => "button", :class => "btn btn-default btn-xs control col-md-3" %>
+	</div>
 
-<ul>
-  <li>Name: <%= @home.name %></li>
-  <li>Address: <%= @home.address %></li>
-</ul>
-
-<p>Housemates:
+<h3>Housemates</h3>
 	<ul>
 		<% @home.rooms.each do |room| %>
 			<%room.users.each do |user| %>
-				<li> <%= link_to "#{user.first_name}", room %> </li>
-			<% end %>
-		<% end %>
-	</ul>
-</p>
+				<p> <%= link_to "#{user.first_name}", room %> <small><%= link_to "Change move in date", edit_user_path(user) %> </small></p>
 
-<p>Empty Rooms:</p>
-	<ul>
-		<% @home.rooms.each do |room| %>
-			<% if room.occupant == nil %>
-			<li> <%= link_to "Spare Room #{room.description}", edit_room_path(room) %> </li>
 			<% end %>
 		<% end %>
 	</ul>
@@ -29,12 +23,46 @@
 
 <%if @current_user.is_house_admin? %>
 
-<div class="controls">
-	<%= link_to 'Edit', edit_home_path(@home) %>
-	<%= button_to 'Delete', @home, :method => 'delete', :data => {:confirm => "Are you sure?"} %>
-</div>
-
 <% end %>
+
+
+<h3>Spare Rooms</h3>
+	
+	<ul>
+		<% @home.rooms.each do |room| %>
+	
+			<% @spare_room_count = 0 %>
+			
+			<% if room.occupant == nil %>
+			
+				<p> <%= link_to "Spare Room #{room.description}", edit_room_path(room) %> </p>
+				<% @spare_room_count += 1 %> 
+			
+			<% end %>
+
+		<% end %>
+
+		<% if @spare_room_count == 0  %>
+			<p>No spare rooms!</p>
+		<% end %>
+	</ul>
+
+	<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'sharehome';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
 
 
 

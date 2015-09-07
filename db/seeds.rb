@@ -21,3 +21,8 @@ r1.users << u2
 r2.users << u4 << u5
 r3.users << u1
 r4.users << u3
+
+Bill.destroy_all
+b2 = Bill.create :name => 'May 14 electricity', :amount => 123
+
+h1.bills << b2

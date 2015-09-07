@@ -1,0 +1,12 @@
+<h2>Edit Move-In Date for <%= @housemate.first_name %> <%= @housemate.last_name %></h2>
+
+<%= form_for @housemate do |f| %>
+  <form>
+  <div class="form-group  ">
+    <%= f.label :moved_in, 'Move in date' %>
+    <%= f.date_field :moved_in, :class => "form-control", :autofocus=>true %>
+  </div>
+
+  <%=  f.submit  %>
+
+<% end %>

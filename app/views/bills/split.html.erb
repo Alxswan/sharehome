@@ -1,0 +1,21 @@
+<h3><%= @bill.name %> bill</h3>
+<h3>Bill Amount: <%= number_to_currency @bill.amount %></h3>
+
+<% @home.users.each do |user| %>
+	
+	<% user_days_in_bill = (@bill.bill_end - user.moved_in).to_i if user.moved_in && @bill.bill_start %>
+
+		<% user_days_in_bill = 0 if user_days_in_bill < 0 %>
+		<% user_days_in_bill = @days_in_bill if user_days_in_bill >= @days_in_bill %>
+		
+		<h4><%= user.first_name %></h4>
+		<% user_owes = @bill.amount.to_f / @total_housemate_days_in_bill * user_days_in_bill %>
+		<p> Days in bill: <%= user_days_in_bill %></p>
+		<p> Owes: <%= number_to_currency user_owes.round %> </p>
+
+
+<% end %>
+
+
+
+		

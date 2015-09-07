@@ -1,3 +1,8 @@
-  <%= image_tag @user.avatar.url %>
-  <%= image_tag @user.avatar.url(:medium) %>
-  <%= image_tag @user.avatar.url(:thumb) %>
+<h3>Move Out of House</h3>
+
+<%= form_for @user do |f| %>
+	<%= f.label :room_id, 'Move out?' %>
+	<%= f.hidden_field :room_id, :value => nil %>
+	<%= f.submit 'Yes' %>
+	<% end %>
+	<%= link_to 'No, go back', '/' %>

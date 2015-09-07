@@ -28,7 +28,7 @@ class HomesController < ApplicationController
 
   def edit
      @home = Home.find params[:id]
-    @rooms = @home.rooms
+     @rooms = @home.rooms
   end
 
   def update

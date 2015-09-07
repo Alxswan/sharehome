@@ -6,7 +6,7 @@
 
 <div class="controls">
 	<%= link_to 'Edit', edit_room_path(@room) %>
-	<%= link_to 'Move out', @room, :method => 'delete', :data => {:confirm => "Are you sure?"} %>
+	<%= link_to 'Move out', user_path(@current_user) %>
 	<%= link_to 'Back to Dash', '/' %>
 
 </div>

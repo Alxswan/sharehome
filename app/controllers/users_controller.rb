@@ -23,20 +23,32 @@ class UsersController < ApplicationController
   end 
 
   def edit
-  	@user = @current_user
+  	@user = User.find params[:id]
+    @housemate = User.find params[:id]
   end
 
   def update
   	@user = @current_user
+    @housemate = User.find params[:id]
 
-  	if @user.update user_params
-  		redirect_to root_path
+    if @housemate == @user   	
+      if @user.update user_params
+    		redirect_to home_path
+      else
+      render :edit
+      end
+    end
 
-  	else
-  		render :edit
-  	end
-  
+    if @housemate != @user
+     @housemate.update housemate_params
+      redirect_to :controller => 'homes', :action => 'show', :id => "#{@current_user.home.id}"
+    end
   end
+
+  def show
+    @user = @current_user
+  end
+
 
   def destroy
   	@user = @current_user
@@ -47,8 +59,12 @@ class UsersController < ApplicationController
   private 
 
   def user_params
-    params[:user][:first_name].capitalize! if params[:user]
-  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :moved_in, :password, :password_confirmation, :avatar)   	
+    params[:user][:first_name].capitalize! if params[:user] && params[:user][:first_name]
+  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :moved_in, :password, :password_confirmation, :avatar, :room_id)   	
+  end
+
+  def housemate_params
+    params.require(:user).permit(:moved_in) 
   end
 
   def user_params_authenticate_home

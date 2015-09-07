@@ -3,13 +3,19 @@
 <% if !@number %>
 
 <%= form_tag '/rooms' do %>
-	  <%= label_tag :number, 'Number of Rooms'%>
-	  <%= number_field_tag :number, :min => 1 %>
+<form>
+	<div class="form-group">
+	  <%= label_tag :number, 'Number of Bedrooms'%>
+	  <%= number_field_tag :number, nil, :min => 1, :class => "form-control", :autofocus=>true %>
+	 </div>
+	 <div class="form-group">
 	  <%= hidden_field_tag :home_id, params[:home_id] %> 
 	  <%= hidden_field_tag :occupant, @current_user.first_name %>
+	</div>
 	  <%= submit_tag 'Add rooms' %> 
-	<% end %>
+</form>	  
 
+	<% end %>
 	<% else %>
 
 <%= link_to 'Change Number of Rooms', new_room_path %>

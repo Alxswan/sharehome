@@ -7,7 +7,11 @@
 <%= render :partial => 'invite' %>
 <% end %>
 
-<%= link_to 'Display House Details', @home %>
+<p> <%= link_to 'House Details', @home %> </p>
+<p> <%= link_to 'Bills', bills_path %> </p>
+<p><%= link_to "Move Out", user_path(@current_user)%></p>
+
+
 
 <% else %>
 <p>Looks like you don't have a Home yet!</p>

@@ -10,7 +10,7 @@
 
 <%= form_for @home do |f| %>
   <form>
-  <div class="form-group  ">
+  <div class="form-group">
     <%= f.label :name, 'Name of home' %>
     <%= f.text_field :name, :class => "form-control", :autofocus=>true %>
   </div>
@@ -36,6 +36,6 @@
   </div>
   
 
-  <%=  f.submit  %>
+  <%=  f.submit :class =>"btn btn-default"  %>
 
 <% end %>

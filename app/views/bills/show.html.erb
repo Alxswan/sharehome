@@ -1,0 +1,15 @@
+<h2> <%= @bill.name %></h2>
+
+<p>Amount: <%= number_to_currency @bill.amount %></p>
+<p>Type: <%= @bill.bill_type %></p>
+<p>Bill start date: <%= @bill.bill_start.strftime "%A, %e %B %Y" if @bill.bill_start %></p>
+<p>Bill end date: <%= @bill.bill_end.strftime "%A, %e %B %Y" if @bill.bill_end %></p>
+<p>Number of days in bill: <%= (@bill.bill_end - @bill.bill_start).to_i if @bill.bill_start && @bill.bill_end  %> </p>
+
+<p><%= link_to 'Split Bill', "/bills/split/#{params[:id]}" %></p>
+<div class="controls">
+	<%= link_to 'Edit', edit_bill_path(@bill) %>
+	<%= link_to 'Delete', @bill, :method => 'delete', :data => {:confirm => "Are you sure?"} %>
+	<%= link_to 'Back to bills', bills_path %>
+
+</div>

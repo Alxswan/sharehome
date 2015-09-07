@@ -1,0 +1,15 @@
+<h2>Bills</h2>
+
+<ul>
+
+	<% @home.bills.each do |bill| %>
+
+		<li> <%= link_to "#{bill.name}", bill %> </li>
+
+	<% end %>
+
+</ul>
+
+<%= link_to "Back to Dash", '/' %>
+<%= link_to "Add new bill", new_bill_path %>
+

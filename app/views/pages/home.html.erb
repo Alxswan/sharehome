@@ -3,5 +3,6 @@
 <% unless @current_user %>
 <%= link_to "Sign up now!", '/users/new', class: "btn btn-lg btn-primary" %>
 <%= link_to "Log in", '/login', class: "btn btn-lg btn-primary" %>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
 <% end %>
 

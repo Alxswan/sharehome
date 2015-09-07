@@ -3,7 +3,13 @@
 <% n = 1 %>
 <% @rooms.sort.each do |room| %>
 	
-	<%= button_to "Room #{n} (owner: #{room.occupant}", room, :method => 'patch' %>
+	<% if room.occupant %>
+	<% owner = room.occupant %>
+	<% else %>
+	<% owner = "Free" %>
+	<% end %>
+	
+	<%= button_to "Room #{n}: #{owner}", room, :method => 'patch', :class => "btn btn-default" %>
 
 	<% n += 1 %>
 

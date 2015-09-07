@@ -1,2 +1,7 @@
 <h1>Welcome!</h1>
 
+<% unless @current_user %>
+<%= link_to "Sign up now!", '/users/new', class: "btn btn-lg btn-primary" %>
+<%= link_to "Log in", '/login', class: "btn btn-lg btn-primary" %>
+<% end %>
+

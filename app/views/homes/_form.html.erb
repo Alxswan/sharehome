@@ -9,31 +9,31 @@
  <% end %>
 
 <%= form_for @home do |f| %>
+  <form>
+  <div class="form-group  ">
+    <%= f.label :name, 'Name of home' %>
+    <%= f.text_field :name, :class => "form-control", :autofocus=>true %>
+  </div>
 
-  <p>
-    <%= f.label :name, 'House name' %>
-    <%= f.text_field :name %>
-  </p>
-
-  <p>
+  <div class="form-group">
     <%= f.label :address %>
-    <%= f.text_field :address %>
-  </p>
+    <%= f.text_field :address, :class => "form-control" %>
+  </div>
 
-  <p>
-    <%= f.label :description, 'Type' %> 
-    <%=  f.select(:description, [['House', 1], ['Appartment',2]]) %>
-  </p>
-  <p>
+  <div class="form-group">
+    <%= f.label :description, 'Type of home' %> 
+    <%=  f.select(:description, [['House', 1], ['Appartment',2]], :class => "form-control")  %>
+  </div>
+  <div class="form-group">
     <%= f.label :password %> 
-    <%= f.password_field :password %>
-    Choose a password that you are happy to share with your housemates, they'll use this to join your House dash.
-  </p>
+    <%= f.password_field :password, :class => "form-control" %>
+    <small>Your housemates will use this password to join your House dash.</small>
+ </div>
 
-  <p>
+  <div class="form-group">
     <%= f.label :password_confirmation  %> 
-    <%= f.password_field :password_confirmation %>
-  </p>
+    <%= f.password_field :password_confirmation, :class => "form-control" %>
+  </div>
   
 
   <%=  f.submit  %>

@@ -2,7 +2,7 @@ class HomesController < ApplicationController
 
   before_action :check_if_logged_in, :only => [:index, :edit, :update]
   # before_action :check_if_admin, :only => [:index]
-  before_action :check_if_house_admin, :only => [:edit, :destroy]
+  before_action :check_if_house_admin, :only => [:destroy]
   before_action :check_if_belongs_to_home, :only => [:show]
 
   def new
@@ -34,7 +34,8 @@ class HomesController < ApplicationController
   def update
     home = Home.find params[:id]
 
-    if home.rooms
+
+    if home.rooms && @current_user.room
       home.update home_params 
       flash[:message] = "Changes saved."
       redirect_to home
@@ -81,7 +82,7 @@ private
   end
 
   def check_if_belongs_to_home
-    redirect_to root_path unless @current_user.present? && (@current_user.room.home.id == params[:id].to_i if @current_user.room.home)
+    redirect_to root_path unless @current_user.present? && (@current_user.room.home.id == params[:id].to_i if @current_user.room && @current_user.room.home)
     end
 
 end

@@ -21,7 +21,7 @@
 	<ul>
 		<% @home.rooms.each do |room| %>
 			<% if room.occupant == nil %>
-			<li> <%= link_to "Room: #{room.description}", edit_room_path(room) %> </li>
+			<li> <%= link_to "Spare Room #{room.description}", edit_room_path(room) %> </li>
 			<% end %>
 		<% end %>
 	</ul>

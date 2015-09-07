@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def user_params
     params[:user][:first_name].capitalize! if params[:user]
-  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :moved_in, :password, :password_confirmation)   	
+  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :moved_in, :password, :password_confirmation, :avatar)   	
   end
 
   def user_params_authenticate_home

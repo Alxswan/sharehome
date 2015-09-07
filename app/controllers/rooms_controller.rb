@@ -2,7 +2,6 @@ class RoomsController < ApplicationController
 
     before_action :check_if_belongs_to_home, :only => [:show, :edit]
 
-
   def index
     @home = Home.find params[:id]
     @rooms = @home.rooms
@@ -39,12 +38,16 @@ class RoomsController < ApplicationController
 
   def update 
     @room = Room.find params[:id]
-    @room.update room_params
 
-    unless @room.users
+    if params[:room]
+    @room.update room_params
+    end
+
+    unless @current_user.room
     @room.users << @current_user
     @room.update(:occupant => "#{@current_user.first_name}")
     end
+
     redirect_to @room
   end
 
@@ -66,7 +69,7 @@ class RoomsController < ApplicationController
   end
 
    def check_if_belongs_to_home
-    redirect_to root_path unless @current_user.present? && (@current_user.room.home.id == Room.find_by_id(params[:id].to_i).home.id if @current_user.room.home && Room.find_by_id(params[:id].to_i).home)
+    redirect_to root_path unless @current_user.present? && (@current_user.room.home.id == Room.find_by_id(params[:id].to_i).home.id if @current_user.room && Room.find_by_id(params[:id].to_i).home)
     end
 
 end

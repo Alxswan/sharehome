@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
     	t.text :phone
     	t.date :birthday
     	t.date :moved_in
+        t.text :paypal_me
     	t.integer :room_id
     	t.integer :location_id
     	t.boolean :is_house_admin

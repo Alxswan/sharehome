@@ -1,16 +1,35 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,300,700);
+@import url(https://fonts.googleapis.com/css?family=Hind:400,700);
+
+.center-block {
+  margin: auto;
+  display: flex;
+  width: 1vh;
+}
+
+.yield {
+  margin: 60px;
+}
+
 
 
 form {
 	max-width: 40%;
+  margin: auto;
 }
+
 
 /* universal */
 
 body {
   padding-top: 60px;
-}
+  color: #555;
+  background-color: white;
+
+  font-family: 'Lato', sans-serif;
+  }
 
 section {
   overflow: auto;
@@ -26,6 +45,32 @@ textarea {
 
 .center h1 {
   margin-bottom: 10px;
+}
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+ 
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+ 
+.btn-primary {
+    background: #70A2FF;
+    color: #ffffff;
+}
+ 
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .dropdown-toggle.btn-primary {
+    background: #629AF9;
+}
+ 
+.btn-primary:active, .btn-primary.active {
+    background: #007299;
+    box-shadow: none;
 }
 
 /* footer */

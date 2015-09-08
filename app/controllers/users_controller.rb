@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 
   def user_params
     params[:user][:first_name].capitalize! if params[:user] && params[:user][:first_name]
-  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :moved_in, :password, :password_confirmation, :avatar, :room_id)   	
+  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :moved_in, :password, :password_confirmation, :avatar, :room_id, :paypal_me)   	
   end
 
   def housemate_params

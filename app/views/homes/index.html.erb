@@ -1,5 +1,26 @@
 <h2>Join a Home</h2>
 
+<% if  !@homes_results.empty? %>
+ 	<ul>
+    	<% @homes_results.each do |home| %>
+       
+            <li>
+                <%= link_to home.name, edit_home_path(home) %>
+            </li>
+        
+    	<% end %>
+	</ul>
+
+<% elsif @homes_results.empty?%>
+
+		<h3>No homes found</h3>
+
+		<%= link_to 'Back to search', new_path %>
+
+<% end %>
+
+<% if @current_user.is_admin %>
+
 <ul>
 	<% @homes.each do |home| %>
 		<li> <%= link_to "#{home.name}", edit_home_path(home) %>
@@ -13,3 +34,4 @@
 	<% end %>
 </ul>
 
+<% end %>

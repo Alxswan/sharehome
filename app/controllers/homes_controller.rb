@@ -18,7 +18,6 @@ class HomesController < ApplicationController
   	else
   	  render :new
   	end
-
   end
 
   def show
@@ -33,7 +32,6 @@ class HomesController < ApplicationController
 
   def update
     home = Home.find params[:id]
-
 
     if home.rooms && @current_user.room
       home.update home_params 
@@ -54,7 +52,16 @@ class HomesController < ApplicationController
 
   def index
      @homes = Home.all
+     if params[:search]
+     @homes_results = Home.where("name ILIKE ? OR address ILIKE ?", "%#{ params[:search] }%", "%#{ params[:search] }%")
+    else
+      @homes_results = []
+      end
   end
+
+  def results      
+  end
+
   
   def destroy
     @home = Home.find params[:id] 

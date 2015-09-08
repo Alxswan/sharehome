@@ -1,8 +1,18 @@
 <h1>Welcome to Sharehome!</h1>
-
+<div class="center">
 <p>
 <%= link_to "Create a new Home", '/homes/new/'%>
 </p>
 <p>
-<%= link_to "Join an existing Home", '/homes'%>
+OR! Join an existing home. Search your home's name:
 </p>
+
+<%= form_tag homes_path, :method => 'get' do %>
+
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+  </p>
+
+<% end %>
+</div>

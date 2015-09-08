@@ -1,10 +1,20 @@
+<% if @bill.errors.any? %>
+ <ul>
+   <% @bill.errors.full_messages.each do |msg| %>
+   <li>
+     <%= msg %>
+   </li>
+   <% end %>
+ </ul>
+ <% end %>
+
 <h2>Add New Bill</h2>
 
 <%= form_for @bill do |f| %>
 <form>
   <div class="form-group">
     <%= f.label :name %>
-    <%= f.text_field :name, :class => "form-control", :autofocus=>true %>
+    <%= f.text_field :name, :placeholder=> "e.g. Gas Bill October 2015", :class => "form-control", :autofocus=>true %>
   </div>
 
   <div class="form-group">
@@ -24,6 +34,20 @@
    <div class="form-group">
     <%= f.label :bill_end  %> 
     <%= f.date_field :bill_end, :class => "form-control" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :user_id, "Owner:"  %> 
+
+      <% @users.each do |user| %>
+    
+    <%= label :user_id, user.first_name %>
+    <%= f.radio_button :user_id, user.id%> 
+
+    
+    <% end %>
+
+    
   </div>
 
     <%= f.hidden_field :home_id,:value => @current_user.home.id %>

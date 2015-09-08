@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150907020409) do
     t.text     "bill_type"
     t.integer  "amount"
     t.integer  "home_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -66,17 +67,14 @@ ActiveRecord::Schema.define(version: 20150907020409) do
     t.text     "phone"
     t.date     "birthday"
     t.date     "moved_in"
+    t.text     "paypal_me"
     t.integer  "room_id"
     t.integer  "location_id"
     t.boolean  "is_house_admin"
     t.boolean  "is_admin"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.text     "password_digest"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
   end
 
 end

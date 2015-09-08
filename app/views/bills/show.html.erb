@@ -1,5 +1,6 @@
 <h2> <%= @bill.name %></h2>
 
+<p>Owner: <%= @bill.user.first_name %></p>
 <p>Amount: <%= number_to_currency @bill.amount %></p>
 <p>Type: <%= @bill.bill_type %></p>
 <p>Bill start date: <%= @bill.bill_start.strftime "%A, %e %B %Y" if @bill.bill_start %></p>

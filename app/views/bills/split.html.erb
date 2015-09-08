@@ -1,5 +1,7 @@
 <h3><%= @bill.name %> bill</h3>
-<h3>Bill Amount: <%= number_to_currency @bill.amount %></h3>
+<h2>Owned by: <%= @owner %></h2>
+
+<h3>Amount: <%= number_to_currency @bill.amount %></h3>
 
 <% @home.users.each do |user| %>
 	
@@ -9,10 +11,13 @@
 		<% user_days_in_bill = @days_in_bill if user_days_in_bill >= @days_in_bill %>
 		
 		<h4><%= user.first_name %></h4>
-		<% user_owes = @bill.amount.to_f / @total_housemate_days_in_bill * user_days_in_bill %>
+		<% user_owes = (@bill.amount.to_f / @total_housemate_days_in_bill * user_days_in_bill).round %>
 		<p> Days in bill: <%= user_days_in_bill %></p>
 		<p> Owes: <%= number_to_currency user_owes.round %> </p>
 
+		<% if user_owes > 0 && @bill.user.paypal_me %>
+		<%= link_to "Pay #{number_to_currency user_owes} to #{@owner} now", "https://www.paypal.me/#{@bill.user.paypal_me}/#{user_owes}" %>
+		<% end %>
 
 <% end %>
 

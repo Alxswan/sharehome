@@ -33,6 +33,12 @@
   </div>
 
    <div class="form-group">
+    <%= f.label :paypal_me, 'PayPal.Me username' %> 
+    <%=  f.text_field :paypal_me, :class => "form-control" %>
+  </div>
+  <p>No PayPal.me username? <%= link_to "Grab one here", 'https://www.paypal.com/paypalme/grab' %> </p>
+
+   <div class="form-group">
     <%= f.label :phone %> 
     <%=  f.text_field :phone, :class => "form-control" %>
   </div>

@@ -7,6 +7,7 @@ class CreateBills < ActiveRecord::Migration
     	t.text :bill_type
     	t.integer :amount
     	t.integer :home_id
+      t.integer :user_id
       t.timestamps null: false
     end
   end

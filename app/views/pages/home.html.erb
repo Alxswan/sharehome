@@ -1,8 +1,22 @@
-<h1>Welcome!</h1>
+<div class="center">
+
+<div class="shrink">
+<h1>sharehome</h1>
+
+<div class="description">
+<br>
+<h4>Shared living, made easy. </h4>
+<br>
+<p>Split bills, send messages, find out who's home.</p>
+<br>
+<p></p>
+
+</div>
 
 <% unless @current_user %>
-<%= link_to "Sign up now!", '/users/new', class: "btn btn-lg btn-primary" %>
-<%= link_to "Log in", '/login', class: "btn btn-lg btn-primary" %>
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<%= link_to "Create Account", '/users/new', class: "btn btn-lg btn-primary" %>
 <% end %>
 
+</div>
+
+</div>

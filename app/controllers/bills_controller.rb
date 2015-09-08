@@ -1,9 +1,12 @@
 class BillsController < ApplicationController
   def new
   	@bill = Bill.new
+    @users = @current_user.home.users
   end
 
   def create
+    @users = @current_user.home.users
+
   	@bill = Bill.new bill_params
 
   	if @bill.save
@@ -40,6 +43,7 @@ class BillsController < ApplicationController
   def split
     @bill = Bill.find params[:id]
     @home = @bill.home
+    @owner = @bill.user.first_name
 
    @days_in_bill = (@bill.bill_end - @bill.bill_start).to_i if @bill.bill_start && @bill.bill_end
    @total_housemate_days_in_bill = 0
@@ -47,7 +51,7 @@ class BillsController < ApplicationController
     @home.users.each do |user|
       if !user.moved_in
         flash[:message] ="No move in date available for #{user.first_name}. Please update"
-        redirect_to edit_user_path(user)
+        redirect_to home_path(@current_user.home) and return
       else
         user_days_in_bill = (@bill.bill_end - user.moved_in).to_i if user.moved_in && @bill.bill_start
         user_days_in_bill = 0 if user_days_in_bill < 0
@@ -60,6 +64,7 @@ class BillsController < ApplicationController
 
   private
   def bill_params
-  	params.require(:bill).permit(:name, :bill_type, :amount, :bill_start, :bill_end, :home_id)   	
+    params[:bill][:user_id] = params[:bill][:user_id].to_i if params[:user_id]
+  	params.require(:bill).permit(:name, :bill_type, :amount, :bill_start, :bill_end, :home_id, :user_id)   	
   end
 end

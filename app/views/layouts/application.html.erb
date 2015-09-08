@@ -4,8 +4,6 @@
   <title>Sharehome</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-  <meta name="google-signin-client_id" content="326031960543-ss495sh1aomb8kub1sf71sj0m78toncp.apps.googleusercontent.com">
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -25,24 +23,29 @@
 				<% end %>
 			</ul>
 			</nav>
-		</div>
+			</div>
+		
 	</header>
 
 <div class="container">
 
+<div class="yield">
+
 	  <%= yield %>
+	  
 	  
 
 
 	<% if flash[:message].present? %>
 	  <p><%= flash[:message] %></p>
 	<% end %>
-
+</div>
 </div>
 
-<div class="container">
 
-<footer class="footer">
+
+<footer class="footer navbar-fixed-bottom">
+<div class="container">
   <small>
     <a href="/">Sharehome</a>
     by <a href="/">Alex Swan</a>
@@ -54,8 +57,10 @@
       <li><a href="/">News</a></li>
     </ul>
   </nav>
+  </div>
 </footer>
-</div>
+
+
 
 </body>
 </html>

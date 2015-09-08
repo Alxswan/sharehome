@@ -52,15 +52,13 @@ class HomesController < ApplicationController
 
   def index
      @homes = Home.all
-     if params[:search]
+     if params[:search] != ""
      @homes_results = Home.where("name ILIKE ? OR address ILIKE ?", "%#{ params[:search] }%", "%#{ params[:search] }%")
     else
       @homes_results = []
       end
   end
 
-  def results      
-  end
 
   
   def destroy

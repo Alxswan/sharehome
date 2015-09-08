@@ -1,0 +1,16 @@
+<h3><%= @bill.name %> bill</h3>
+<h2>Owned by: <%= @owner %></h2>
+
+<h3>Amount: <%= number_to_currency @bill.amount %></h3>
+
+
+		<p> Each housemate owes: <%= number_to_currency @owes.round %> </p>
+
+		<% if @owes > 0 && @bill.user.paypal_me %>
+		<%= link_to "Pay #{number_to_currency user_owes} to #{@owner} now", "https://www.paypal.me/#{@bill.user.paypal_me}/#{@owes}" %>
+		<% end %>
+
+<%= link_to 'Back', bill_path(@bill) %>
+
+
+		

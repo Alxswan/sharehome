@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   get '/new' => 'pages#new_user'
   get '/pages/join' => 'pages#join'
   get '/bills/split/:id' => 'bills#split'
+  get '/bills/simple/:id' => 'bills#simple'
   get '/homes/results' => 'homes#results'
   # get '/users/edit' => 'users#edit', :as => :edit_user
   resources :users  

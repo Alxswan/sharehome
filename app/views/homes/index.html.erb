@@ -21,6 +21,8 @@
 
 <% if @current_user.is_admin %>
 
+<h3>Admin view</h3>
+
 <ul>
 	<% @homes.each do |home| %>
 		<li> <%= link_to "#{home.name}", edit_home_path(home) %>

@@ -15,6 +15,7 @@
 #
 
 class Bill < ActiveRecord::Base
+
 	belongs_to :home
 	belongs_to :user
 
@@ -22,7 +23,7 @@ class Bill < ActiveRecord::Base
 	validates :bill_end, :presence => true
 	validates :name, :presence => true
 	validates :amount, :presence => true
-	validates :owner, :presence => true
+	validates :user_id, :presence => true
 
 
 

@@ -1,8 +1,11 @@
-<h1>Welcome to Sharehome!</h1>
 <div class="center">
+<h1>Welcome to Sharehome!</h1>
+<br>
+
 <p>
-<%= link_to "Create a new Home", '/homes/new/'%>
+<%= button_to "Create a new Home", '/homes/new/', class: "btn btn-lg btn-primary"%>
 </p>
+<br>
 <p>
 OR! Join an existing home. Search your home's name:
 </p>
@@ -11,7 +14,7 @@ OR! Join an existing home. Search your home's name:
 
   <p>
     <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-lg btn-default" %>
   </p>
 
 <% end %>

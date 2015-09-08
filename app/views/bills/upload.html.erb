@@ -1,0 +1,9 @@
+  <div class="form-group">
+  <%= form_tag "/bills", multipart: true do %>
+    <%= label_tag :image %>
+    <%= cl_image_upload_tag :file, :class => "form-control" %>
+
+	<%= submit_tag "Add" %>
+  </div>
+  <% end %>
+

@@ -5,9 +5,15 @@ class BillsController < ApplicationController
   end
 
   def create
+    bill_details = bill_params
     @users = @current_user.home.users
 
-  	@bill = Bill.new bill_params
+    if params[:file]
+    response = Cloudinary::Uploader.upload params[:file]
+    bill_details["image"] = response["url"]
+    end
+    
+  	@bill = Bill.new bill_details
 
   	if @bill.save
   	  redirect_to bills_path
@@ -59,6 +65,13 @@ class BillsController < ApplicationController
         @total_housemate_days_in_bill += user_days_in_bill 
       end
     end
+  end
+
+  def simple
+    @bill = Bill.find params[:id]
+    @home = @bill.home
+    @owes = @bill.amount / @home.users.count
+    @owner = @bill.user.first_name
 
   end
 

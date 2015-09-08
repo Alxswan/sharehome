@@ -5,6 +5,7 @@ class CreateBills < ActiveRecord::Migration
     	t.date :bill_end
     	t.text :name
     	t.text :bill_type
+      t.text :image
     	t.integer :amount
     	t.integer :home_id
       t.integer :user_id

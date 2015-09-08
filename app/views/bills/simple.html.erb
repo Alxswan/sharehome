@@ -1,16 +1,30 @@
-<h3><%= @bill.name %> bill</h3>
-<h2>Owned by: <%= @owner %></h2>
+<div class="center">
+
+<h2><%= @bill.name %> </h2>
+
+
+
+<div class="bill-display">
+<h4>Owned by: <%= @owner %></h4>
 
 <h3>Amount: <%= number_to_currency @bill.amount %></h3>
 
-
-		<p> Each housemate owes: <%= number_to_currency @owes.round %> </p>
+		<p>Split between <%= @count %> people</p>
+		<p> Each person owes: <%= number_to_currency @owes.round %> </p>
 
 		<% if @owes > 0 && @bill.user.paypal_me %>
-		<%= link_to "Pay #{number_to_currency user_owes} to #{@owner} now", "https://www.paypal.me/#{@bill.user.paypal_me}/#{@owes}" %>
+		<%= link_to "Pay #{number_to_currency @owes.round} to #{@owner} now", "https://www.paypal.me/#{@bill.user.paypal_me}/#{@owes}", :type => 'button', :class => 'btn btn-primary' %>
 		<% end %>
+</div>
+<br>
+		<%= render :partial => 'simple_count' %>
 
-<%= link_to 'Back', bill_path(@bill) %>
 
+<br>
+<div class="text-center">
+<p> <%= link_to 'Back', bill_path(@bill) %> </p>
+
+</div>
+</div>
 
 		

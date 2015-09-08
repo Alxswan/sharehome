@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = @current_user
+    @user = User.find params[:id]
   end
 
 
@@ -64,7 +64,7 @@ class UsersController < ApplicationController
   end
 
   def housemate_params
-    params.require(:user).permit(:moved_in) 
+    params.require(:user).permit(:moved_in, :room_id) 
   end
 
   def user_params_authenticate_home

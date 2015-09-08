@@ -49,7 +49,7 @@ class RoomsController < ApplicationController
     @room.update(:occupant => "#{@current_user.first_name}")
     end
 
-    redirect_to @room
+    redirect_to home_path(@room.home)
   end
 
   def destroy

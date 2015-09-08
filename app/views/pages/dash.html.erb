@@ -1,15 +1,22 @@
 <div class="center jumbotron">
 <h2>Welcome Home!</h2>
 
-
 <% if @home %>
 <% if @home.users.count < 2 %>
 <%= render :partial => 'invite' %>
 <% end %>
 
-<p> <%= link_to 'House Details', @home %> </p>
-<p> <%= link_to 'Bills', bills_path %> </p>
-<p><%= link_to "Move Out", user_path(@current_user)%></p>
+<div class="controls">
+<%= link_to 'House Details', @home, :type => "button", :class => "btn btn-default btn-xs" %> 
+<%= link_to 'Bills', bills_path, :type => "button", :class => "btn btn-default btn-xs" %> 
+
+</div>
+<br>
+<p>Home: <%= @home.name %></p>
+<%= link_to "Move Me Out", user_path(@current_user)%>
+<br>
+
+<br>
 
 <% if !@current_user.paypal_me %>
 <p>Looks like you haven't added your PayPal.me username.
@@ -25,3 +32,5 @@
 
 
 </div>
+
+

@@ -1,4 +1,8 @@
+<div class="center">
 <h2>Bills</h2>
+
+
+<div class="bill-display">
 
 <ul>
 
@@ -10,6 +14,12 @@
 
 </ul>
 
+</div>
+<br>
+<%= link_to "Add new bill", new_bill_path, :type => "button", :class => "btn btn-primary btn-xs" %>
+<br>
+<br>
+<div class="controls">
 <%= link_to "Back to Dash", '/' %>
-<%= link_to "Add new bill", new_bill_path %>
-
+</div>
+</div>

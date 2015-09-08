@@ -21,4 +21,9 @@ class PagesController < ApplicationController
   def join_home
   	#user has user name, address and password of home
   end
+
+  private
+def message_params
+    params.require(:message).permit(:post) 
+  end
 end

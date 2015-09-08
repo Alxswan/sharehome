@@ -1,17 +1,24 @@
+<div class="center">
+
 <h2> <%= @bill.name %></h2>
+<p><%= link_to "Split Bill by date", "/bills/split/#{params[:id]}", :type => "button", :class => "btn btn-default btn-xs" %></p>
+<p><%= link_to 'Simple Split Bill', "/bills/simple/#{params[:id]}", :type => "button", :class => "btn btn-default btn-xs" %>  </p>
+
+<div class="bill-display">
 
 <p>Owner: <%= @bill.user.first_name %></p>
 <p>Amount: <%= number_to_currency @bill.amount %></p>
-<p>Type: <%= @bill.bill_type %></p>
-<p>Bill start date: <%= @bill.bill_start.strftime "%A, %e %B %Y" if @bill.bill_start %></p>
-<p>Bill end date: <%= @bill.bill_end.strftime "%A, %e %B %Y" if @bill.bill_end %></p>
+<p>Start date: <%= @bill.bill_start.strftime "%A, %e %B %Y" if @bill.bill_start %></p>
+<p>End date: <%= @bill.bill_end.strftime "%A, %e %B %Y" if @bill.bill_end %></p>
 <p>Number of days in bill: <%= (@bill.bill_end - @bill.bill_start).to_i if @bill.bill_start && @bill.bill_end  %> </p>
+</div>
 
-<p><%= link_to "Split Bill ", "/bills/split/#{params[:id]}" %> (split by move in date)</p>
-<p><%= link_to 'Simple Split ', "/bills/simple/#{params[:id]}" %> (divide evenly) </p>
+<br>
+
 <div class="controls">
 	<%= link_to 'Edit', edit_bill_path(@bill) %>
 	<%= link_to 'Delete', @bill, :method => 'delete', :data => {:confirm => "Are you sure?"} %>
 	<%= link_to 'Back to bills', bills_path %>
 
+</div>
 </div>

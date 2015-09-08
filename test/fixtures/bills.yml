@@ -7,6 +7,7 @@
 #  bill_end   :date
 #  name       :text
 #  bill_type  :text
+#  image      :text
 #  amount     :integer
 #  home_id    :integer
 #  user_id    :integer

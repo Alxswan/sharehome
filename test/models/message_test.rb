@@ -1,23 +1,18 @@
 # == Schema Information
 #
-# Table name: bills
+# Table name: messages
 #
 #  id         :integer          not null, primary key
-#  bill_start :date
-#  bill_end   :date
-#  name       :text
-#  bill_type  :text
-#  image      :text
-#  amount     :integer
-#  home_id    :integer
 #  user_id    :integer
+#  home_id    :integer
+#  message    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class BillTest < ActiveSupport::TestCase
+class MessageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

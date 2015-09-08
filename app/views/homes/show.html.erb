@@ -1,6 +1,6 @@
 <div class="row">
 
-	<div class="col-md-6">
+	<div class="col-xs-6">
 		<h2 class="text-center">Your Home</h2>
 
 		<div class="text-center">
@@ -9,23 +9,53 @@
 		
 			
 			<%= link_to 'Edit Home', edit_home_path(@home), :type => "button", :class => "btn btn-primary btn-xs" %>
-			<%= button_to 'Delete Home', @home, :method => 'delete', :data => {:confirm => "Are you sure?"}, :type => "button", :class => "btn btn-default btn-xs" %>
-		</div>
+			<%= link_to 'Delete Home', @home, :method => 'delete', :data => {:confirm => "Are you sure?"}, :type => "button", :class => "btn btn-default btn-xs" %>
+		<br>
+		<br>
+		<br>
+		<h5>Spare Rooms</h5>
+
+			<% @home.rooms.each do |room| %>
+				<% @spare_room_count = 0 %>
+				
+				<% if room.users.empty? %>
+				
+					<p> <%= link_to "Spare Room! #{room.description}", edit_room_path(room) %> </p>
+					<% @spare_room_count += 1 %> 
+				
+				<% end %>
+
+			<% end %>
+			<% if @spare_room_count == 0  %>
+				<small><p>No spare rooms!</p></small>
+			<% end %>
+
+			
 	</div>
+</div>
 
 
-
-	<div class="col-md-6">
+	<div class="col-xs-6">
 		<div class="text-center">
+
 	<h3>Housemates</h3>
-		
+		<div class="bill-display">
 			<% @home.rooms.each do |room| %>
 				<%room.users.each do |user| %>
-					<p> <%= link_to "#{user.first_name}", room %> <small><%= link_to "Update	 move in date", edit_user_path(user) %> </small></p>
+				<h4><%= user.first_name %> </h4>
+				<div class="controls">
+					<p>Rent: <%= number_to_currency user.room.rent %>
+				 <small><%= link_to "Update", edit_room_path(room) %></small></p>
+					<p>Moved in: <%= user.moved_in.strftime "%B %Y" if user.moved_in %>
+				 <small><%= link_to "Update", edit_user_path(user) %> </small></p>
+
+				</div>
+				<small><%= link_to "Move #{user.first_name} out of home", user_path(user) %></small>
 
 				<% end %>
 			<% end %>
-		
+</div>
+
 
 
 	<%if @current_user.is_house_admin? %>
@@ -33,32 +63,17 @@
 	<% end %>
 
 
-	<h5>Spare Rooms</h5>
-		
-		
-			<% @home.rooms.each do |room| %>
-		
-				<% @spare_room_count = 0 %>
-				
-				<% if room.occupant == nil %>
-				
-					<p> <%= link_to "Spare Room #{room.description}", edit_room_path(room) %> </p>
-					<% @spare_room_count += 1 %> 
-				
-				<% end %>
-
-			<% end %>
-
-			<% if @spare_room_count == 0  %>
-				<small><p>No spare rooms!</p></small>
-			<% end %>
+	
 		
 		</div>
-
 	</div>
-
 </div>
 
+
+<div class="controls">
+	<%= link_to 'See bills', bills_path %>
+
+</div>
 
 
 

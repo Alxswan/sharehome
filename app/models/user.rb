@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
 
 	belongs_to :room
 	has_many :bills
+	has_many :messages
 	has_one :home, :through => :room
 
 

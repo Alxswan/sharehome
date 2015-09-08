@@ -68,9 +68,15 @@ class BillsController < ApplicationController
   end
 
   def simple
+
     @bill = Bill.find params[:id]
     @home = @bill.home
-    @owes = @bill.amount / @home.users.count
+    if params[:count]
+      @count = params[:count].to_i
+    else
+    @count = @home.users.count
+    end
+    @owes = @bill.amount / @count
     @owner = @bill.user.first_name
 
   end

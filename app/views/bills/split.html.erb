@@ -1,7 +1,12 @@
-<h3><%= @bill.name %> bill</h3>
-<h2>Owned by: <%= @owner %></h2>
+<div class="center">
+<h2><%= @bill.name %> </h2>
+<h4>Owned by: <%= @owner %></h4>
 
 <h3>Amount: <%= number_to_currency @bill.amount %></h3>
+
+</div>
+<div class="bill-display">
+
 
 <% @home.users.each do |user| %>
 	
@@ -16,12 +21,15 @@
 		<p> Owes: <%= number_to_currency user_owes.round %> </p>
 
 		<% if user_owes > 0 && @bill.user.paypal_me %>
-		<%= link_to "Pay #{number_to_currency user_owes} to #{@owner} now", "https://www.paypal.me/#{@bill.user.paypal_me}/#{user_owes}" %>
+		<%= link_to "Pay #{number_to_currency user_owes} to #{@owner} now", "https://www.paypal.me/#{@bill.user.paypal_me}/#{user_owes}" , :type => 'button', :class => 'btn btn-primary' %>
 		<% end %>
 
 <% end %>
+</div>
 
+<div class="text-center">
 <%= link_to 'Back', bill_path(@bill) %>
+</div>
 
 
 

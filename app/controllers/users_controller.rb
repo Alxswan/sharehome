@@ -28,13 +28,21 @@ class UsersController < ApplicationController
   end
 
   def update
+
   	@user = @current_user
     @housemate = User.find params[:id]
+    create_record
 
-    if @housemate == @user   	
+    if params[:user][:room_id] == "nil"
+      params[:user][:room_id] = nil
+    end
+
+    if @housemate == @user   
+
       if @user.update user_params
     		redirect_to home_path
       else
+
       render :edit
       end
     end
@@ -60,7 +68,7 @@ class UsersController < ApplicationController
 
   def user_params
     params[:user][:first_name].capitalize! if params[:user] && params[:user][:first_name]
-  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :moved_in, :password, :password_confirmation, :avatar, :room_id, :paypal_me)   	
+  	params.require(:user).permit(:email, :first_name, :last_name, :phone, :birthday, :moved_in, :password, :password_confirmation, :room_id, :paypal_me)   	
   end
 
   def housemate_params
@@ -83,5 +91,17 @@ class UsersController < ApplicationController
     redirect_to root_path unless @current_user.id == params[:id].to_i
   end
 
+  def create_record
+    if params[:user][:room_id] && params[:user][:room_id] = "nil"
+      r = Record.create
+      @housemate.records << r
+      @housemate.home.records << r
+      @housemate.room.records << r
+      r.move_in = @current_user.moved_in if @current_user.moved_in
+      r.move_out = params[:move_out] || Time.now
+      r.first_name = @housemate.first_name
+      r.save
+    end
+  end
 
 end

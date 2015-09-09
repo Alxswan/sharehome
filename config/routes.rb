@@ -55,6 +55,8 @@
 
 Rails.application.routes.draw do
 
+  get 'records/index'
+
   get 'messages/show'
 
   root :to => 'pages#home'
@@ -69,6 +71,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :rooms
   resources :bills
+  resources :records
 
 
   get '/login' => 'session#new'
@@ -76,3 +79,4 @@ Rails.application.routes.draw do
   delete '/login' => 'session#destroy'
 
 end
+  

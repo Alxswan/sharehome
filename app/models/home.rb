@@ -25,12 +25,17 @@
 class Home < ActiveRecord::Base
 	has_secure_password
 
+
 	has_many :rooms
 	has_many :users, :through => :rooms
 	has_many :bills
 	has_many :messages
+	has_many :records
 
+	geocoded_by :address
 	validates :address, :presence => true
+	after_validation :geocode
+
 	validates :name, :presence => true, :uniqueness => true
 	validates :description, :presence => true
 end

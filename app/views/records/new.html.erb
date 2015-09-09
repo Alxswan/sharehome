@@ -1,0 +1,24 @@
+<h2>Create housemate record</h2>
+
+<%= form_for @record do |f| %>
+  
+  <div class="form-group">
+    <%= f.label :first_name, 'Name' %>
+    <%= f.text_field :first_name, :class => "form-control", :autofocus=>true %>
+  </div>
+
+  <div class="form-group  ">
+    <%= f.label :move_in, 'Move in date' %>
+    <%= f.date_field :move_in, :class => "form-control", :autofocus=>true %>
+  </div>
+
+  <div class="form-group  ">
+    <%= f.label :move_out, 'Move out date' %>
+    <%= f.date_field :move_out, :class => "form-control" %>
+  </div>
+
+  <%= f.hidden_field :home_id, :value => @current_user.home.id %>
+
+  <%=  f.submit 'Save', class: "btn btn-default btn-xs" %>
+
+<% end %>

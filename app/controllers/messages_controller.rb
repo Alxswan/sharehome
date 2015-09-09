@@ -20,10 +20,15 @@ class MessagesController < ApplicationController
   end
 
   def destroy
+  	@message = Message.find params[:id]
+  	@message.destroy
+  	redirect_to '/'
   end
 
   private
   def message_params
-  	params.require(:message).permit(:message) 
+  	params[:message][:home_id].to_i
+  	params[:message][:user_id].to_i
+  	params.require(:message).permit(:message, :home_id, :user_id) 
   end
 end

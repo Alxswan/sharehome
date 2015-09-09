@@ -4,8 +4,11 @@
 <br>
 
 <%= form_for @user do |f| %>
-	<%= f.hidden_field :room_id, :value => nil %>
+	<%= f.hidden_field :room_id, :value => "nil" %>
+	<%= f.label :move_out, "Move out date" %>
+	<%= date_field_tag :move_out %>
 	<%= f.submit 'Yes, Move out', class: 'btn btn-primary' %>
+
 	<% end %>
 	<br>
 	<%= link_to 'No, go back', home_path(@user.home) %>

@@ -25,6 +25,24 @@
 		<% end %>
 
 <% end %>
+
+<% @records.each do |record| %>
+	
+	<% user_days_in_bill = (@bill.bill_end - record.move_out).to_i if record.move_out && @bill.bill_start %>
+
+		<% user_days_in_bill = 0 if user_days_in_bill < 0 %>
+		<% user_days_in_bill = @days_in_bill if user_days_in_bill >= @days_in_bill %>
+		
+		<h4><%= record.first_name %></h4>
+		<% user_owes = (@bill.amount.to_f / @total_housemate_days_in_bill * user_days_in_bill).round %>
+		<p> Days in bill: <%= user_days_in_bill %></p>
+		<p> Owes: <%= number_to_currency user_owes.round %> </p>
+
+		<% if user_owes > 0 && @bill.user.paypal_me %>
+		<%= link_to "Pay #{number_to_currency user_owes} to #{@owner} now", "https://www.paypal.me/#{@bill.user.paypal_me}/#{user_owes}" , :type => 'button', :class => 'btn btn-primary' %>
+		<% end %>
+
+<% end %>
 </div>
 
 <div class="text-center">

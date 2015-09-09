@@ -1,10 +1,9 @@
 
-
-<form>
 <%= form_for @message do |f|%>
     <div class="form-inline">
     <%= f.label :message, "New message to house: ", :class => 'sr-only' %>
     <%= f.text_field :message, :placeholder => "Post message to house", :class => "form-control" %> 
+    <%= f.hidden_field :home_id, :value => @current_user.home.id %>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
   <%= f.submit "Post", :class => 'btn btn-default btn-xs' %>
 <% end %>
-</form>

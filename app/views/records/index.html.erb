@@ -1,0 +1,20 @@
+<h3>Housemate History</h3>
+
+<% @records.each do |record| %>
+
+<h2> <%= record.first_name %> </h2>
+
+<p>Move in date: <%= record.move_in.strftime "%A, %e %B %Y" if record.move_in %></p>
+<p>Move out date: <%= record.move_out.strftime "%A, %e %B %Y" if record.move_out %></p>
+<%= link_to 'Edit', edit_record_path(record) %>
+
+<%= link_to "Delete", record_path(record), :method => 'delete'%>
+<% end %>
+
+<div class="controls">
+	
+	
+
+</div>
+
+<%= link_to 'Back to Dash', '/' %>

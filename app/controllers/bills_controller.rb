@@ -50,6 +50,7 @@ class BillsController < ApplicationController
     @bill = Bill.find params[:id]
     @home = @bill.home
     @owner = @bill.user.first_name
+    @records = Record.where(:home_id => @bill.home.id)
 
    @days_in_bill = (@bill.bill_end - @bill.bill_start).to_i if @bill.bill_start && @bill.bill_end
    @total_housemate_days_in_bill = 0
@@ -65,7 +66,24 @@ class BillsController < ApplicationController
         @total_housemate_days_in_bill += user_days_in_bill 
       end
     end
+    
+    @records.each do |record|
+      if record.move_in && record.move_out
+        user_days_in_bill = (@bill.bill_start - record.move_out).to_i if record.move_out && @bill.bill_start
+        user_days_in_bill = 0 if user_days_in_bill < 0
+        user_days_in_bill = @days_in_bill if user_days_in_bill >= @days_in_bill
+        @total_housemate_days_in_bill += user_days_in_bill
+
+      else
+        flash[:message] ="No move in date available for #{user.first_name}. Please update"
+        redirect_to edit_record_path(record) and return
+      end
+
   end
+end
+
+
+
 
   def simple
 

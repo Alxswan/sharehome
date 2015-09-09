@@ -1,36 +1,73 @@
-<div class="center jumbotron">
-<h2>Welcome Home!</h2>
+<h2 class="center">Welcome Home!</h2>
+	
+	<% if @home %>
 
-<% if @home %>
-<% if @home.users.count < 2 %>
-<%= render :partial => 'invite' %>
-<% end %>
+		<% if @home.users.count < 2 %>
+			<div class="center jumbotron">
+				<%= render :partial => 'invite' %>
+			</div>
+		<% end %>
+			<br>
+		<% if !@current_user.paypal_me %>
+			<div class="center jumbotron">
+				<p>Looks like you haven't added your PayPal.me username.
+				<%= link_to "Add it now.", edit_user_path(@current_user) %> </p>
+			</div>	
+		<% end %>
+	<div class="row">
+		<div class="col-md-4">
+		<%= form_for @message do |f|%>
+	    	<div class="form">
+		    <%= f.text_field :message, :placeholder => "Post message to house", :class => "form-control" %>
+		    <%= f.hidden_field :home_id, :value => @current_user.home.id %>
+		    <%= f.hidden_field :user_id, :value => @current_user.id %>
+		  	<%= f.submit "Post", :class => 'form-control btn btn-default btn-xs' %>
+		<% end %>
 
-<div class="controls">
-<%= link_to 'House Details', @home, :type => "button", :class => "btn btn-default btn-xs" %> 
-<%= link_to 'Bills', bills_path, :type => "button", :class => "btn btn-default btn-xs" %> 
+			</div>
+		</div>
 
+		<div class="col-md-4">
+		<%= link_to 'House Details', @home, :type => "button", :class => "btn btn-primary btn-xs" %> 
+		<%= link_to 'Bills', bills_path, :type => "button", :class => "btn btn-primary btn-xs" %> 
+		<br>
+		<div class="center">
+		<br>
+		<h3>Noticeboard</h3>
+		
+		<% if @messages && !@messages.empty? %>
+			<% @messages.each do |message| %>
+			<p> <%= message.message %> <br> <small>Posted by <%= message.user.first_name %> <%= distance_of_time_in_words_to_now message.created_at %> ago <%= link_to 'Delete', message_path(message), :method => 'delete' %></small></p>
+			
+			<% end  %>
+		<% else %>
+			<p>No messages</p>
+		<% end %>
+		</div>
+
+		</div>
+		
+		<div class="col-md-4">
+		<br>
+		<p>My home: <%= @home.name %>
+
+		<small><%= link_to "Move Out", user_path(@current_user)%></small></p>
+		</div>
+		</div>
+		<br><br>
+
+	<% else %>
+		<div class="center jumbotron">
+		<p>Looks like you don't have a Home yet!</p>
+		<%= link_to 'Connect Home', '/new' %>
+		</div>
+	<%end %>
 </div>
-<br>
-<p>Home: <%= @home.name %></p>
-<%= link_to "Move Me Out", user_path(@current_user)%>
-<br>
-
-<br>
-
-<% if !@current_user.paypal_me %>
-<p>Looks like you haven't added your PayPal.me username.
-<%= link_to "Add it now.", edit_user_path(@current_user) %>
-
-</p>
-<% end %>
-
-<% else %>
-<p>Looks like you don't have a Home yet!</p>
-<%= link_to 'Connect Home', '/new' %>
-<%end %>
 
 
+<div id='calendar'>
+	
+	
 </div>
 
 

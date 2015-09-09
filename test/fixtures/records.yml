@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  move_in: 2015-09-09
+  move_out: 2015-09-09
+  home_id: 1
+  room_id: 1
+  user_id: 1
+
+two:
+  move_in: 2015-09-09
+  move_out: 2015-09-09
+  home_id: 1
+  room_id: 1
+  user_id: 1

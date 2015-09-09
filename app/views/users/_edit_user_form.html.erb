@@ -1,4 +1,6 @@
+<div class="center">
 <h1>Edit your details</h1>
+</div>
 
 <% if @user.errors.any? %>
  <ol>
@@ -52,10 +54,13 @@
     <%= f.label :password_confirmation  %> 
     <%= f.password_field :password_confirmation, :class => "form-control" %>
   </div>
- 
- <%=  f.submit :class =>"btn btn-default"  %>
+ <div class="center">
+ <%=  f.submit :class =>"btn btn-primary"  %>
+ </div>
  </form>
   
 <% end %>
+<div class="center">
+  <%= button_to "Delete Account", @current_user, :method => 'delete', :data => { :confirm => 'Are you sure you want to delete your account?'}, :class => 'btn btn-default' %>
 
-  <%= button_to "Delete Your Account", @current_user, :method => 'delete', :data => { :confirm => 'Are you sure you want to delete your account?' } %>
+  </div>

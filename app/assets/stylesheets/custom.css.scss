@@ -11,33 +11,6 @@
 
 .simple-calendar td { height: 90px; width: 14.28%; }
 
-.simple-calendar {
-
-  .day {
-  }
-
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
-
-  .today {}
-  .past {}
-  .future {}
-
-  .start-date {}
-
-  .prev-month {
-
-  }
-  .next-month { }
-  .current-month {}
-
-  .has-events {}
-}
 
 .center-block {
   margin: auto;
@@ -55,7 +28,6 @@
 
 nav {
   background-color: white;
-  box-shadow: 2px,2px,2px,black;
 }
 
 .icon-bar {

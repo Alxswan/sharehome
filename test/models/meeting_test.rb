@@ -1,21 +1,18 @@
 # == Schema Information
 #
-# Table name: records
+# Table name: meetings
 #
 #  id         :integer          not null, primary key
-#  move_in    :date
-#  move_out   :date
-#  home_id    :integer
-#  room_id    :integer
-#  user_id    :integer
-#  first_name :text
+#  name       :string
+#  start_time :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  home_id    :integer
 #
 
 require 'test_helper'
 
-class RecordTest < ActiveSupport::TestCase
+class MeetingTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

@@ -55,6 +55,7 @@
 
 Rails.application.routes.draw do
 
+  resources :meetings
   get 'records/index'
 
   get 'messages/show'

@@ -1,16 +1,15 @@
 # == Schema Information
 #
-# Table name: messages
+# Table name: meetings
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
-#  home_id    :integer
-#  message    :text
+#  name       :string
+#  start_time :datetime
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  home_id    :integer
 #
 
-class Message < ActiveRecord::Base
-	belongs_to :user
+class Meeting < ActiveRecord::Base
 	belongs_to :home
 end

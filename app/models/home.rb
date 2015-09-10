@@ -31,6 +31,7 @@ class Home < ActiveRecord::Base
 	has_many :bills
 	has_many :messages
 	has_many :records
+	has_many :meetings
 
 	geocoded_by :address
 	validates :address, :presence => true

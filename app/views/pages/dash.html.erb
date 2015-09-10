@@ -1,19 +1,20 @@
 <h2 class="center">Welcome Home!</h2>
 	
 	<% if @home %>
-
+		
 		<% if @home.users.count < 2 %>
-			<div class="center jumbotron">
-				<%= render :partial => 'invite' %>
-			</div>
+		<div class="center jumbotron">		
+				<%= render :partial => "invite" %>
+		</div>
 		<% end %>
 			<br>
 		<% if !@current_user.paypal_me %>
-			<div class="center jumbotron">
+		<div class="center jumbotron">
 				<p>Looks like you haven't added your PayPal.me username.
 				<%= link_to "Add it now.", edit_user_path(@current_user) %> </p>
-			</div>	
+		</div>
 		<% end %>
+		</div>
 	
 	<div class="row">
 		<div class="col-md-4">
@@ -22,49 +23,94 @@
 		    <%= f.text_field :message, :placeholder => "Post message to house", :class => "form-control" %>
 		    <%= f.hidden_field :home_id, :value => @current_user.home.id %>
 		    <%= f.hidden_field :user_id, :value => @current_user.id %>
-		  	<%= f.submit "Post", :class => 'form-control btn btn-default btn-xs' %>
+		  	<%= f.submit "Post", :class => "form-control btn btn-default btn-xs" %>
 		<% end %>
-
 		</div>
 	</div>
 
 		<div class="col-md-4">
-		<%= link_to 'House Details', @home, :type => "button", :class => "btn btn-primary btn-xs" %> 
-		<%= link_to 'Bills', bills_path, :type => "button", :class => "btn btn-primary btn-xs" %> 
-		<br>
-		<div class="center">
-		<br>
-		<h3>Noticeboard</h3>
-		
-		<% if @messages && !@messages.empty? %>
-			<% @messages.each do |message| %>
-			<p> <%= message.message %> <br> <small>Posted by <%= message.user.first_name %> <%= distance_of_time_in_words_to_now message.created_at %> ago <%= link_to 'Delete', message_path(message), :method => 'delete' %></small></p>
-			
-			<% end  %>
-		<% else %>
-			<p>No messages</p>
-		<% end %>
-		</div>
-
+		  <div class="center">
+		    <%= link_to 'House Details', @home, :type => "button", :class => "btn btn-primary btn-xs" %> 
+		    <%= link_to 'Bills', bills_path, :type => "button", :class => "btn btn-primary btn-xs" %> 
+		  </div>
+		    <br>
+		  <div class="center">
+		    <h3>Noticeboard</h3>
+		  
+		    <% if @messages && !@messages.empty? %>
+		    	<% @messages.each do |message| %>
+		    	<p> <%= message.message %> <br> <small>Posted by <%= message.user.first_name %> <%=   distance_of_time_in_words_to_now message.created_at %> ago <%= link_to 'Delete', message_path(  message), :method => 'delete' %></small></p>
+		    	
+		    	<% end  %>
+		    <% else %>
+		      <p>No messages</p>
+		    <% end %>
+		    <br>
+		    <br>
+		    <div class="show-calendar">
+		    	<button class='btn btn-primary'>Show/Hide Calendar</button>
+		    </div>
+		  </div>	  
 		</div>
 		
 		<div class="col-md-4">
-		<br>
-		<p>My home: <%= @home.name %>
-
-		<small><%= link_to "Move Out", user_path(@current_user)%></small></p>
+		   <br>
+		   <p class="text-center">My home: <%= @home.name %> 
+		   <small><%= link_to "Move Out", user_path(@current_user)%></small></p>
 		</div>
-		</div>
-
+		
 	<% else %>
 		<div class="center jumbotron">
-		<p>Looks like you don't have a Home yet!</p>
-		<%= link_to 'Connect Home', '/new' %>
+		  <p>Looks like you don't have a Home yet!</p>
+		  <%= link_to 'Connect Home', '/new' %>
 		</div>
-	<%end %>
+	  <%end %>
+	</div>
+
+<% if @home %>
+	<div class="calendar" id="calendar">
+      <div class="row">
+        <div class="col-md-9">	
+          <%= month_calendar events: @meetings do |date, meetings| %>
+            <%= date.strftime("%d")  %>
+            <% meetings.each do |meeting| %>
+              <div>
+                <%= meeting.name %>
+                <p>
+                <small><%= link_to 'Edit', edit_meeting_path(meeting) %>
+                <%= link_to "Delete", meeting_path(meeting), :method => 'delete' %></small></p>
+              </div>
+            <% end %>
+          <% end %>     
+        </div>
+    
+    <div class="col-md-3"> 
+      <h4 class="text-center">Add New Event</h4>
+      <%= form_for(@meeting) do |f| %>
+        <% if @meeting.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2  >
+            <ul>
+            <% @meeting.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>   
+        <div class="form-group">
+          <%= f.label :name, "Event Name" %><br>
+          <%= f.text_field :name, :class => "form-control", :maxlength => 20 %>
+        </div>
+        <div class="form-group">
+          <%= f.label :start_time, "Date" %><br>
+          <%= f.date_field :start_time, :class => "form-control" %>
+        </div>
+        <%= f.hidden_field :home_id, :value => @home.id %>
+        <div class="actions">
+          <%= f.submit "Add to Calendar", :class => "btn btn-default btn-xs" %>
+        </div>
+	  <% end %>
+    </div>
+  </div>
+  <% end %>
 </div>
-
-<%= month_calendar do |date| %>
-  <%= date.strftime("%d")  %>
-<% end %>
-

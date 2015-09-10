@@ -3,10 +3,17 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,300,700);
 @import url(https://fonts.googleapis.com/css?family=Hind:400,700);
 
-.simple-calendar td { height: 100px; width: 14.28%; }
+.calendar {
+  display: none;
+  margin: 100px;
+}
+
+.simple-calendar td { height: 90px; width: 14.28%; }
 
 .simple-calendar {
-  .day {}
+
+  .day {
+  }
 
   .wday-0 {}
   .wday-1 {}
@@ -23,7 +30,7 @@
   .start-date {}
 
   .prev-month {
-    background-color: grey;
+
   }
   .next-month { }
   .current-month {}
@@ -72,13 +79,10 @@ nav {
   padding-left: 14px;
 }
 
-
-
 form {
 	max-width: 80%;
   margin: auto;
 }
-
 
 /* universal */
 

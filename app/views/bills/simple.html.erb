@@ -11,16 +11,16 @@
     <p> Each person owes: <%= number_to_currency @owes.round %> </p>
     
     <% if @owes > 0 && @bill.user.paypal_me %>
-      <%= link_to "Pay #{number_to_currency @owes.round} to #{@owner} now", "https://www.paypal.me/#{  @  bill.user.paypal_me}/#{@owes}", :type => 'button', :class => 'btn btn-primary' %>
+      <%= link_to "Pay #{number_to_currency @owes.round} to #{@owner} now", "https://www.paypal.me/#{@bill.user.paypal_me}/#{@owes}", :type => 'button', :class => 'btn btn-primary' %>
     <% end %>
   </div>
   <br>
-  <%= render :partial => 'simple_count' %>
+  <%= render :partial => "simple_count" %>
   <br>
   
   <div class="text-center">
     
-    <p> <%= link_to 'Back', bill_path(@bill) %> </p>
+    <p> <%= link_to "Back", bill_path(@bill) %> </p>
   
   </div>
 </div>

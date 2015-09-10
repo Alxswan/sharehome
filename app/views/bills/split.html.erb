@@ -18,7 +18,7 @@
   	<p> Owes: <%= number_to_currency user_owes.round %> </p>
   
   	<% if user_owes > 0 && @bill.user.paypal_me %>
-  	  <%= link_to "Pay #{number_to_currency user_owes} to #{@owner} now", "https://www.paypal.me/#{@  bill.user.paypal_me}/#{user_owes}" , :type => 'button', :class => 'btn btn-primary' %>
+  	  <%= link_to "Pay #{number_to_currency user_owes} to #{@owner} now", "https://www.paypal.me/#{@bill.user.paypal_me}/#{user_owes}", :type => "button", :class => "btn btn-primary" %>
   	<% end %>
   
   <% end %>
@@ -36,7 +36,7 @@
   	<p> Owes: <%= number_to_currency user_owes.round %> </p>
   
   	<% if user_owes > 0 && @bill.user.paypal_me %>
-  	<%= link_to "Pay #{number_to_currency user_owes} to #{@owner} now", "https://www.paypal.me/#{@  bill.user.paypal_me}/#{user_owes}" , :type => 'button', :class => 'btn btn-primary' %>
+  	<%= link_to "Pay #{number_to_currency user_owes} to #{@owner} now", "https://www.paypal.me/#{@bill.user.paypal_me}/#{user_owes}" , :type => 'button', :class => 'btn btn-primary' %>
   	<% end %>
   
   <% end %>
@@ -46,6 +46,8 @@
    <%= link_to 'Back', bill_path(@bill) %>
 </div>
 
+<br>
+<br>
 
 
 		

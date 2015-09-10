@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  
+
 </head>
 <body>
 <nav class="navbar navbar-fixed-top">
@@ -26,7 +26,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Home', '/' %></li>
+        <li><%= link_to 'Home', root_path %></li>
 				<% if @current_user.present? %>
 				<li><%= link_to "Edit profile", edit_user_path(@current_user) %></li>
 				<li><%= link_to "Logged in as #{ @current_user.first_name }"%></li>
@@ -44,16 +44,12 @@
 
 <div class="container">
 
-<div class="yield">
-
 	  <%= yield %>
-
-	  
 
 	<% if flash[:message].present? %>
 	  <p><%= flash[:message] %></p>
 	<% end %>
-</div>
+
 </div>
 
 

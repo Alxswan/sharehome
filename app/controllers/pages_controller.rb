@@ -1,5 +1,4 @@
 class PagesController < ApplicationController
-  before_action :check_if_logged_in, :only => [:index, :edit, :update, :new]
 
   def home
     if @current_user
@@ -9,6 +8,8 @@ class PagesController < ApplicationController
       	@home = Home.find_by_id(home_id)
       end
 
+      @meeting = Meeting.new
+      @meetings = Meeting.where(:home_id => @current_user.home.id) if @current_user.home
       @message = Message.new
       @messages = Message.where(:home_id => @current_user.home.id).order(:created_at =>:desc).limit(5) if @current_user.home
   	  render :dash    

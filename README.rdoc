@@ -1,5 +1,7 @@
 == README
 
-This Applictaion was created as Project 1 for General Assembly's Web Development Immersive in September 2015.
+This Applictaion was created as Project 1 during General Assembly's Web Development Immersive in September 2015.
+
+Made with Ruby on Rails & Bootstrap.
  
 https://sharehome.herokuapp.com/

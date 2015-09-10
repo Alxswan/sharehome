@@ -16,6 +16,15 @@ class PagesController < ApplicationController
     end
   end
 
+  def news
+  end
+
+  def contact
+  end
+
+  def about
+  end
+  
   private
   def message_params
     params.require(:message).permit(:post) 

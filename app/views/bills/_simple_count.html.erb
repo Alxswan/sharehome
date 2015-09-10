@@ -1,7 +1,7 @@
 
 <%= form_tag "/bills/simple/#{params[:id]}", method: 'get' do |f| %>
   <%= label_tag "Change split:" %>
-  <%= number_field_tag :count, nil, :min=> 2 %>
+  <%= number_field_tag :count, @count, :min=> 2 %>
   <%= hidden_field_tag :id, "#{@bill.id}"%>
   <%= submit_tag "Update", class: 'btn btn-default' %>
 <% end %>

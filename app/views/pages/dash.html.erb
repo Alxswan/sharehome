@@ -36,15 +36,15 @@
 		    <br>
 		  <div class="center">
 		    <h3>Noticeboard</h3>
-		  
+		  	<div class="noticeboard">
 		    <% if @messages && !@messages.empty? %>
 		    	<% @messages.each do |message| %>
-		    	<p> <%= message.message %> <br> <small>Posted by <%= message.user.first_name %> <%=   distance_of_time_in_words_to_now message.created_at %> ago <%= link_to 'Delete', message_path(  message), :method => 'delete' %></small></p>
-		    	
+		    	<p> <%= message.message %> <br> <small>Posted by <strong><%= message.user.first_name %></strong> <%=   distance_of_time_in_words_to_now message.created_at %> ago <%= link_to 'Delete', message_path(  message), :method => 'delete' %></small></p>	    	
 		    	<% end  %>
 		    <% else %>
 		      <p>No messages</p>
 		    <% end %>
+		    </div>
 		    <br>
 		    <br>
 		    <div class="show-calendar">

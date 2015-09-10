@@ -51,7 +51,6 @@ class MeetingsController < ApplicationController
   def destroy
     @meeting.destroy
     redirect_to '/#calendar'
-   
   end
 
   private

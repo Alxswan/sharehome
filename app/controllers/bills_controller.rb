@@ -69,7 +69,7 @@ class BillsController < ApplicationController
     
     @records.each do |record|
       if record.move_in && record.move_out
-        user_days_in_bill = (@bill.bill_start - record.move_out).to_i if record.move_out && @bill.bill_start
+        user_days_in_bill = (record.move_out - @bill.bill_start).to_i if record.move_out && @bill.bill_start
         user_days_in_bill = 0 if user_days_in_bill < 0
         user_days_in_bill = @days_in_bill if user_days_in_bill >= @days_in_bill
         @total_housemate_days_in_bill += user_days_in_bill

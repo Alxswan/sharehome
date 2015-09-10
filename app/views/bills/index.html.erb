@@ -1,25 +1,21 @@
 <div class="center">
-<h2>Bills</h2>
+  <h2>Bills</h2>
 
+  <div class="bill-display">
 
-<div class="bill-display">
-
-<ul>
-
-	<% @home.bills.each do |bill| %>
-
+	<ul>
+	  <% @home.bills.each do |bill| %>
 		<li> <%= link_to "#{bill.name}", bill %> </li>
+	  <% end %>
+	</ul> 
+  </div>
+  <br>
 
-	<% end %>
-
-</ul>
-
-</div>
-<br>
-<%= link_to "Add new bill", new_bill_path, :type => "button", :class => "btn btn-primary btn-xs" %>
-<br>
-<br>
-<div class="controls">
-<%= link_to "Back to Dash", '/' %>
-</div>
+  <%= link_to "Add new bill", new_bill_path, :type => "button", :class => "btn btn-primary btn-xs" %>
+  <br>
+  <br>
+  
+  <div class="controls"> 
+    <%= link_to "Back to Dash", '/' %>
+  </div>
 </div>

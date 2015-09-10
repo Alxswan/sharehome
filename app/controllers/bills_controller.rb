@@ -9,8 +9,8 @@ class BillsController < ApplicationController
     @users = @current_user.home.users
 
     if params[:file]
-    response = Cloudinary::Uploader.upload params[:file]
-    bill_details["image"] = response["url"]
+      response = Cloudinary::Uploader.upload params[:file]
+      bill_details["image"] = response["url"]
     end
     
   	@bill = Bill.new bill_details
@@ -52,8 +52,8 @@ class BillsController < ApplicationController
     @owner = @bill.user.first_name
     @records = Record.where(:home_id => @bill.home.id)
 
-   @days_in_bill = (@bill.bill_end - @bill.bill_start).to_i if @bill.bill_start && @bill.bill_end
-   @total_housemate_days_in_bill = 0
+    @days_in_bill = (@bill.bill_end - @bill.bill_start).to_i if @bill.bill_start && @bill.bill_end
+    @total_housemate_days_in_bill = 0
 
     @home.users.each do |user|
       if !user.moved_in
@@ -82,9 +82,6 @@ class BillsController < ApplicationController
   end
 end
 
-
-
-
   def simple
 
     @bill = Bill.find params[:id]
@@ -92,7 +89,7 @@ end
     if params[:count]
       @count = params[:count].to_i
     else
-    @count = @home.users.count
+      @count = @home.users.count
     end
     @owes = @bill.amount / @count
     @owner = @bill.user.first_name

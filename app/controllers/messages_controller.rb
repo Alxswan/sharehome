@@ -1,6 +1,4 @@
 class MessagesController < ApplicationController
-  def show
-  end
 
   def new
   	@message = Message.new 
@@ -16,9 +14,6 @@ class MessagesController < ApplicationController
   	end
   end
 
-  def update
-  end
-
   def destroy
   	@message = Message.find params[:id]
   	@message.destroy
@@ -26,6 +21,7 @@ class MessagesController < ApplicationController
   end
 
   private
+  
   def message_params
   	params[:message][:home_id].to_i
   	params[:message][:user_id].to_i

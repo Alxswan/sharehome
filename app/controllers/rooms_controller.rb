@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
 
-    before_action :check_if_belongs_to_home, :only => [:show, :edit]
+  before_action :check_if_belongs_to_home, :only => [:show, :edit]
 
   def index
     @home = Home.find params[:id]
@@ -25,10 +25,10 @@ class RoomsController < ApplicationController
 	  	room = home.rooms.create
     end
 
-      user_room = home.rooms.first
-	  	user_room.users << @current_user
-      user_room.occupant = @current_user.first_name
-      user_room.save
+    user_room = home.rooms.first
+	  user_room.users << @current_user
+    user_room.occupant = @current_user.first_name
+    user_room.save
 	  	
   	redirect_to root_path 
   end
@@ -41,12 +41,12 @@ class RoomsController < ApplicationController
     @room = Room.find params[:id]
 
     if params[:room]
-    @room.update room_params
+      @room.update room_params
     end
 
     unless @current_user.room
-    @room.users << @current_user
-    @room.update(:occupant => "#{@current_user.first_name}")
+      @room.users << @current_user
+      @room.update(:occupant => "#{@current_user.first_name}")
     end
 
     redirect_to home_path(@room.home)
@@ -60,7 +60,6 @@ class RoomsController < ApplicationController
     @room.destroy
     flash[:message] = "Moved #{occupant} out of room"
     redirect_to root_path
-
   end
 
   private
@@ -72,5 +71,4 @@ class RoomsController < ApplicationController
    def check_if_belongs_to_home
     redirect_to root_path unless @current_user.present? && (@current_user.room.home.id == Room.find_by_id(params[:id].to_i).home.id if @current_user.room && Room.find_by_id(params[:id].to_i).home)
     end
-
 end

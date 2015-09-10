@@ -40,7 +40,7 @@ gem 'bootstrap-sass',       '3.2.0.0'
 gem 'paperclip', github: 'thoughtbot/paperclip'
 gem 'cloudinary'
 gem 'geocoder'
-gem 'fullcalendar_engine'
+gem "simple_calendar", "~> 2.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -5,7 +5,6 @@ class RecordsController < ApplicationController
 
   def create
   	@record = Record.new record_params
-
   	if @record.save
   	  redirect_to records_path
   	else
@@ -33,9 +32,9 @@ class RecordsController < ApplicationController
   	redirect_to records_path
   end
 
-
   private
   def record_params
   params.require(:record).permit(:move_in, :move_out, :home_id, :first_name)
 	end
+  
 end

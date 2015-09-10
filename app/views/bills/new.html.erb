@@ -11,12 +11,11 @@
 <h2>Add New Bill</h2>
 
 <%= form_for @bill, :html => {multipart: true} do |f| %>
-<form>
 
-<div class="form-group">
-    <%= f.label :image, "Upload Bill" %>
-    <%= f.cl_image_upload :file, :class => "form-control" %>
-</div>
+  <div class="form-group">
+      <%= f.label :image, "Upload Bill" %>
+      <%= f.cl_image_upload :file, :class => "form-control" %>
+  </div>
 
   <div class="form-group">
     <%= f.label :name %>
@@ -27,7 +26,8 @@
     <%= f.label :bill_type %> 
     <%=  f.text_field :bill_type, :class => "form-control"%>
   </div>
- <div class="form-group">
+
+  <div class="form-group">
     <%= f.label :amount %> 
     <%=  f.number_field :amount, :class => "form-control"%>
   </div>
@@ -35,38 +35,34 @@
    <div class="form-group">
     <%= f.label :bill_start %> 
     <%= f.date_field :bill_start, :class => "form-control" %>
-  </div>
+   </div>
 
-   <div class="form-group">
+  <div class="form-group">
     <%= f.label :bill_end  %> 
     <%= f.date_field :bill_end, :class => "form-control" %>
   </div>
 
-
-<div class="form-group">
+  <div class="form-group">
     <%= f.label :user_id, "Bill paid by:" %> 
 
-      <% @users.each do |user| %>
+    <% @users.each do |user| %>
 
       <% if user != @current_user %>
-    
-    <%= label :user_id, user.first_name %>
-    <%= f.radio_button :user_id, user.id %>
+        <%= label :user_id, user.first_name %>
+        <%= f.radio_button :user_id, user.id %>
       <% end %>
-    
     <% end %>
-      <div class="form-group">
+  </div>
+  
+  <div class="form-group">
     <%= f.label :user_id, "I pay this bill"  %> 
     <%= f.radio_button :user_id, @current_user.id  %>
   </div>
+   
+  <%= f.hidden_field :home_id,:value => @current_user.home.id %>
 
-    
-  </div>
+  <%= f.submit :class =>"btn btn-default" %>
 
-    <%= f.hidden_field :home_id,:value => @current_user.home.id %>
-
-  <%=  f.submit  %>
-</form>
 <% end %>
 
 

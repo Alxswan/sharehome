@@ -1,7 +1,6 @@
 class HomesController < ApplicationController
 
-  before_action :check_if_logged_in, :only => [:index, :edit, :update]
-  # before_action :check_if_admin, :only => [:index]
+  before_action :check_if_logged_in, :only => [:index, :edit, :update, :new]
   before_action :check_if_house_admin, :only => [:destroy]
   before_action :check_if_belongs_to_home, :only => [:show]
 
@@ -51,12 +50,12 @@ class HomesController < ApplicationController
   end
 
   def index
-     @homes = Home.all
-     if params[:search] != ""
-     @homes_results = Home.where("name ILIKE ? OR address ILIKE ?", "%#{ params[:search] }%", "%#{ params[:search] }%")
+    @homes = Home.all
+    if params[:search] != ""
+      @homes_results = Home.where("name ILIKE ? OR address ILIKE ?", "%#{ params[:search] }%", "%#{ params[:search] }%")
     else
       @homes_results = []
-      end
+    end
   end
 
 

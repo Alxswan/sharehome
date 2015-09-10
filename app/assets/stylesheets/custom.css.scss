@@ -3,6 +3,34 @@
 @import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,300,700);
 @import url(https://fonts.googleapis.com/css?family=Hind:400,700);
 
+.simple-calendar td { height: 100px; width: 14.28%; }
+
+.simple-calendar {
+  .day {}
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {
+    background-color: grey;
+  }
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+}
+
 .center-block {
   margin: auto;
   display: flex;

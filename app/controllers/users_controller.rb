@@ -16,7 +16,6 @@ class UsersController < ApplicationController
   	if @user.save
       session[:user_id] = @user.id
   	  redirect_to :controller =>'pages', :action => 'new_user', :id => :id
-
   	else
   	  render :new
   	end
@@ -38,12 +37,10 @@ class UsersController < ApplicationController
     end
 
     if @housemate == @user   
-
       if @user.update user_params
     		redirect_to home_path
       else
-
-      render :edit
+        render :edit
       end
     end
 
@@ -103,5 +100,4 @@ class UsersController < ApplicationController
       r.save
     end
   end
-
 end

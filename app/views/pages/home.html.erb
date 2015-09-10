@@ -1,23 +1,25 @@
-<div class="center">
-
-<div class="shrink">
-
-<h1 id="title">sharehome</h1>
-
-<div class="description">
-<br>
-<h4>Shared living, made easy. </h4>
-<br>
-<p>Split bills, send messages, find out who's home.</p>
-<br>
-<p></p>
-
+<div class="center jumbotron">
+  <h1>sharehome</h1>
+  <h3>Shared living, made easy. </h3>
+  <% unless @current_user %>
+      <%= link_to "Create Account", '/users/new', class: "btn btn-lg btn-primary" %>
+  <% end %>
 </div>
-
-<% unless @current_user %>
-<%= link_to "Create Account", '/users/new', class: "btn btn-lg btn-primary" %>
-<% end %>
-
-</div>
+  
+  <div class="row text-center">
+  <div class="col-md-4">
+    <h4>Bill Calculator and Payment</h4>
+    <small><p>Split bills by move in/move out date with easy payment powered by PayPal.me</p></small>
+    </div>
+    <div class="col-md-4">
+    <h4>Shared Noticeboard</h4>
+    <small><p>Share messages with housemates on your house dashboard</p></small>
+    </div>
+    <div class="col-md-4">
+    <h4>Shared Calendar</h4>
+    <small><p>Schedule events, keep track of chores and inspections with shared calendar and checklist</p></small>
+    </div>
+    <br> 
+  </div>
 
 </div>

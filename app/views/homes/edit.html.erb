@@ -1,13 +1,8 @@
 <% if @home.users.include? @current_user %>
-
-<h3>Edit Home</h3>
-<%= render :partial => 'form' %>
-
-  <% else %>
-
- <%= render :partial => "authenticate_home" %>
-
-
+  <h3>Edit Home</h3>
+  <%= render :partial => 'form' %>
+<% else %>
+  <%= render :partial => "authenticate_home" %>
 <% end %>
 
 

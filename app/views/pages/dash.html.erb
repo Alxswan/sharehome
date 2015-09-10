@@ -14,6 +14,7 @@
 				<%= link_to "Add it now.", edit_user_path(@current_user) %> </p>
 			</div>	
 		<% end %>
+	
 	<div class="row">
 		<div class="col-md-4">
 		<%= form_for @message do |f|%>
@@ -24,8 +25,8 @@
 		  	<%= f.submit "Post", :class => 'form-control btn btn-default btn-xs' %>
 		<% end %>
 
-			</div>
 		</div>
+	</div>
 
 		<div class="col-md-4">
 		<%= link_to 'House Details', @home, :type => "button", :class => "btn btn-primary btn-xs" %> 
@@ -54,7 +55,6 @@
 		<small><%= link_to "Move Out", user_path(@current_user)%></small></p>
 		</div>
 		</div>
-		<br><br>
 
 	<% else %>
 		<div class="center jumbotron">
@@ -64,10 +64,7 @@
 	<%end %>
 </div>
 
-
-<div id='calendar'>
-	
-	
-</div>
-
+<%= month_calendar do |date| %>
+  <%= date.strftime("%d")  %>
+<% end %>
 

@@ -12,4 +12,5 @@
 
 class Meeting < ActiveRecord::Base
 	belongs_to :home
+	has_one :check_list
 end

@@ -11,6 +11,9 @@ class PagesController < ApplicationController
       @meeting = Meeting.new
       @meetings = Meeting.where(:home_id => @current_user.home.id) if @current_user.home
       @message = Message.new
+      @checklist = Checklist.new
+      @show_list = Checklist.where(:home_id => @current_user.home.id).order(:created_at => :desc).limit(2) if @current_user.home
+      @new_check_item = CheckItem.new
       @messages = Message.where(:home_id => @current_user.home.id).order(:created_at =>:desc).limit(5) if @current_user.home
   	  render :dash    
     end

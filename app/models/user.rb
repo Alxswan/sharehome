@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
 	has_many :messages
 	has_many :records
 	has_one :home, :through => :room
+	has_many :check_items
 
 
 	validates :email, :presence => true, :uniqueness => true, :on => :create

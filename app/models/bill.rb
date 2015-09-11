@@ -19,6 +19,7 @@ class Bill < ActiveRecord::Base
 
 	belongs_to :home
 	belongs_to :user
+	has_one :checklist
 
 	validates :bill_start, :presence => true
 	validates :bill_end, :presence => true

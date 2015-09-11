@@ -69,13 +69,7 @@ Rails.application.routes.draw do
   get '/bills/split/:id' => 'bills#split'
   get '/bills/simple/:id' => 'bills#simple'
   get '/homes/results' => 'homes#results'
-  # get '/users/edit' => 'users#edit', :as => :edit_user
-  resources :users  
-  resources :homes 
-  resources :messages
-  resources :rooms
-  resources :bills
-  resources :records
+  resources :users, :homes, :messages, :rooms, :bills, :records, :checklists, :check_items
 
 
   get '/login' => 'session#new'

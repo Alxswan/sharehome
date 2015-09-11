@@ -26,7 +26,12 @@
 		  	<%= f.submit "Post", :class => "form-control btn btn-default btn-xs" %>
 		<% end %>
 		</div>
-	</div>
+
+		<br>
+		    <div class="show-calendar center">
+		    	<button class='btn btn-primary'>Show/Hide Calendar</button>
+		    </div>
+		</div>
 
 		<div class="col-md-4">
 		  <div class="center">
@@ -45,18 +50,78 @@
 		      <p>No messages</p>
 		    <% end %>
 		    </div>
-		    <br>
-		    <br>
-		    <div class="show-calendar">
-		    	<button class='btn btn-primary'>Show/Hide Calendar</button>
-		    </div>
+		   		   
 		  </div>	  
 		</div>
 		
 		<div class="col-md-4">
-		   <br>
 		   <p class="text-center">My home: <%= @home.name %> 
 		   <small><%= link_to "Move Out", user_path(@current_user)%></small></p>
+			<br>
+			<div class="show-checklist center">
+		<button class='btn btn-primary'>Show/Hide Checklists</button>
+			</div>
+			<br>
+			<div class="checklist" id="checklist">
+			
+		  	<div class="noticeboard">
+		    <% if @show_list && !@show_list.empty? %>
+		    	<% @show_list.each do |list| %>
+		    	<h4> <%= list.name %> </h4>  
+
+		    	<% list.check_items.each do |item| %>
+		    	<li><%= item.task %>
+		    	<small><%= link_to 'Done', check_item_path(item), :method => 'delete' %></small></li>
+		    	<% end %>
+		    	<br>
+
+		    	<%= form_for @new_check_item do |f| %>   
+        		<div class="form-group">
+          		<%= f.label :task, "Add task" %><br>
+          		<%= f.text_field :task, :class => "form-control", :maxlength => 20 %>
+        		</div>
+        		<%= f.hidden_field :checklist_id, :value => list.id %>
+        		<div class="actions">
+          		<%= f.submit "Add", :class => "btn btn-default btn-xs" %>
+        		</div>   	
+		    	<% end  %>
+		    	<%= link_to 'Delete', checklist_path(list), :method => 'delete' %>
+				<ul>
+		    	
+		    	</ul>
+
+		    	<% end %>
+		    <% else %>
+		      <p>No lists</p>
+		    <% end %>
+		    </div>
+		
+		   
+      <h4 class="text-center">Add New Checklist</h4>
+      <div class="center">
+      <%= form_for(@checklist) do |f| %>
+        <% if @checklist.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@checklist.errors.count, "error") %> prohibited this meeting from being saved:</h2  >
+            <ul>
+            <% @checklist.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>   
+        <div class="form-group">
+          <%= f.label :name, "Title" %><br>
+          <%= f.text_field :name, :class => "form-control", :maxlength => 20 %>
+        </div>
+        <%= f.hidden_field :home_id, :value => @home.id %>
+        <div class="actions">
+          <%= f.submit "Create Checklist", :class => "btn btn-default btn-xs" %>
+          </div>
+		 <% end %>
+	   </div>
+    </div>
+
 		</div>
 		
 	<% else %>
@@ -111,6 +176,12 @@
         </div>
 	  <% end %>
     </div>
-  </div>
-  <% end %>
+     </div>
+      <% end %>
 </div>
+
+
+
+	<br>
+	<br>
+

@@ -4,9 +4,19 @@
 @import url(https://fonts.googleapis.com/css?family=Hind:400,700);
 
 
+#wrap {
+    min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
 .calendar {
   display: none;
-  margin: 100px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .checklist {

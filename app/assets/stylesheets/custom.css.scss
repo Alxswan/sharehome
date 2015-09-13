@@ -6,6 +6,17 @@
     .calendar {
         font-size:0.7em;
     }
+    .simple-calendar td {
+      height: 60px;
+    }
+
+}
+
+@media screen and (min-width: 568px) {
+    .simple-calendar td {
+      height: 80px;
+    }
+
 }
 
 
@@ -29,7 +40,7 @@
   display: none;
 }
 
-.simple-calendar td { height: 80px; width: 14.28%; font-size: 0.8em; }
+.simple-calendar td {width: 14.28%; font-size: 0.8em; }
 
 
 .center-block {

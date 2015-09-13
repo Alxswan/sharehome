@@ -24,7 +24,6 @@
 		    <%= link_to 'House Details', @home, :type => "button", :class => "btn btn-primary btn-xs" %> 
 		    <%= link_to 'Bills', bills_path, :type => "button", :class => "btn btn-primary btn-xs" %> 
 		  </div>
-		    <br>
 		  <div class="center">
 		    <h3>Noticeboard</h3>
 		  	<div class="noticeboard">
@@ -36,19 +35,25 @@
 		      <p>No messages</p>
 		    <% end %>
 		    </div>
+		    <br>
+		    <%= form_for @message do |f|%>
+	    	<div class="form">
+		    <%= f.text_field :message, :placeholder => "Post message to house", :class => "form-control" %>
+		    <%= f.hidden_field :home_id, :value => @current_user.home.id %>
+		    <%= f.hidden_field :user_id, :value => @current_user.id %>
+		  	<%= f.submit "Post", :class => "form-control btn btn-default" %>
+		<% end %>
+		</div>
+		<br>
+		 <p class="text-center">My home: <%= @home.name %> 
+		   <small><%= link_to "Move Out", user_path(@current_user)%></small></p>
+			<br>
 		   		   
 		  </div>	  
 		</div>
 
 			<div class="col-md-4 col-md-pull-4 col-sm-6">
-		<%= form_for @message do |f|%>
-	    	<div class="form">
-		    <%= f.text_field :message, :placeholder => "Post message to house", :class => "form-control" %>
-		    <%= f.hidden_field :home_id, :value => @current_user.home.id %>
-		    <%= f.hidden_field :user_id, :value => @current_user.id %>
-		  	<%= f.submit "Post", :class => "form-control btn btn-default btn-xs" %>
-		<% end %>
-		</div>
+		
 
 		<br>
 		    <div class="show-calendar center">
@@ -57,9 +62,7 @@
 		</div>
 		
 		<div class="col-md-4 col-sm-6">
-		   <p class="text-center">My home: <%= @home.name %> 
-		   <small><%= link_to "Move Out", user_path(@current_user)%></small></p>
-			<br>
+		  <br>
 			<div class="show-checklist center">
 		<button class='btn btn-primary'>Show/Hide Checklists</button>
 			</div>
@@ -76,6 +79,7 @@
 		    	<small><%= link_to 'Done', check_item_path(item), :method => 'delete' %></small></li>
 		    	<% end %>
 		    	<br>
+
 
 		    	<%= form_for @new_check_item do |f| %>   
         		<div class="form-group">

@@ -4,7 +4,7 @@
 @import url(https://fonts.googleapis.com/css?family=Hind:400,700);
 @media screen and (max-width: 568px) {
     .calendar {
-        font-size:0.6em;
+        font-size:0.7em;
     }
 }
 
@@ -29,7 +29,7 @@
   display: none;
 }
 
-.simple-calendar td { height: 90px; width: 14.28%; }
+.simple-calendar td { height: 80px; width: 14.28%; font-size: 0.8em; }
 
 
 .center-block {

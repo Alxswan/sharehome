@@ -75,7 +75,7 @@ class BillsController < ApplicationController
         @total_housemate_days_in_bill += user_days_in_bill
 
       else
-        flash[:message] ="No move in date available for #{user.first_name}. Please update"
+        flash[:message] ="No move in date available for #{record.first_name}. Please update"
         redirect_to edit_record_path(record) and return
       end
 
